@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Team Matching Tool Student data</title>
+        <!--<link rel="stylesheet" href="css/home.css">-->
+        <!-- Bootstrap Core CSS -->
+        <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="../css/home.css" rel="stylesheet" >
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">Team Matching Tool</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Home</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container">
+          <h2>Student Data Table</h2>
+          <p>The table stores student data from project class.</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>PID</th>
+                <th>Major</th>
+                <th>Project Preference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="row1-name"></td>
+                <td id="row1-pid"></td>
+                <td id="row1-major"></td>
+                <td id="row1-projPref"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- jQuery -->
+        <script src="../jquery/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
+            authDomain: "team-matching-tool.firebaseapp.com",
+            databaseURL: "https://team-matching-tool.firebaseio.com",
+            storageBucket: "team-matching-tool.appspot.com",
+            messagingSenderId: "209177574012"
+          };
+          firebase.initializeApp(config);
+
+          var database = firebase.database();
+
+          database.ref("students/1").once("value").then(function(snapshot) {
+                var student1 = snapshot.val();
+
+                $("#row1-name").text(student1.name);
+                $("#row1-pid").text(student1.pid);
+                $("#row1-major").text(student1.major);
+                $("#row1-projPref").text(student1.projectPref);
+          });
+
+          
+
+        </script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

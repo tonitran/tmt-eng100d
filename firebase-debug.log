@@ -1,0 +1,42 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\paulkim\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] CLI Version:  3.4.0
+[debug] Platform:     win32
+[debug] Node Version: v6.10.0
+[debug] Time:         Fri Mar 03 2017 17:38:20 GMT-0800 (Pacific Standard Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\paulkim\Desktop\UCSD\UCSD Quarters\2016-2017\Winter 2017\ENG 100D\TMT
+[info] Public Directory: app
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\paulkim\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] CLI Version:  3.4.0
+[debug] Platform:     win32
+[debug] Node Version: v6.10.0
+[debug] Time:         Fri Mar 03 2017 17:54:40 GMT-0800 (Pacific Standard Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\paulkim\Desktop\UCSD\UCSD Quarters\2016-2017\Winter 2017\ENG 100D\TMT
+[info] Public Directory: app
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\paulkim\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] CLI Version:  3.4.0
+[debug] Platform:     win32
+[debug] Node Version: v6.10.0
+[debug] Time:         Fri Mar 03 2017 18:38:22 GMT-0800 (Pacific Standard Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\paulkim\Desktop\UCSD\UCSD Quarters\2016-2017\Winter 2017\ENG 100D\TMT
+[info] Public Directory: app
+[info] 
+[info] Server listening at: http://localhost:5000

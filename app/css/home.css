@@ -1,0 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.form-group {
+    width: 37.5%;
+    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}

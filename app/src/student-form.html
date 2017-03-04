@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Team Matching Tool Student Form</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/home.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="../index.html">Team Matching Tool</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="../index.html">Home</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container text-center">
+            <div class="row">
+              <p>Students</p>
+              <p>Please fill out the form to join a project team.</p>
+
+              <form id="student-form" onsubmit="writeDataFirebase()">
+                  <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="form-control" id="full-name">
+                  </div>
+                  <div class="form-group">
+                      <label for="pid">PID:</label>
+                      <input type="text" class="form-control" id="pid">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="project-pref">Major:</label>
+                      <select class="form-control" id="project-pref">
+                        <option>Computer Science</option>
+                        <option>Cognitive Science</option>
+                        <option>Biology, Chemistry, Physics</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="project-pref">Project Preference 1:</label>
+                      <select class="form-control" id="project-pref">
+                        <option>Team Matching Tool</option>
+                        <option>Baker Elementary</option>
+                        <option>The Plastics</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="project-pref">Project Preference 2:</label>
+                      <select class="form-control" id="project-pref">
+                        <option>Team Matching Tool</option>
+                        <option>Baker Elementary</option>
+                        <option>The Plastics</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="project-pref">Project Preference 3:</label>
+                      <select class="form-control" id="project-pref">
+                        <option>Team Matching Tool</option>
+                        <option>Baker Elementary</option>
+                        <option>The Plastics</option>
+                      </select>
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+            </div>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
+            authDomain: "team-matching-tool.firebaseapp.com",
+            databaseURL: "https://team-matching-tool.firebaseio.com",
+            storageBucket: "team-matching-tool.appspot.com",
+            messagingSenderId: "209177574012"
+          };
+          firebase.initializeApp(config);
+
+          var database = firebase.database();
+          var rootRef = firebase.database().ref();
+
+          function writeDataFirebase() {
+                var fullName = $("#full-name").val();
+                var studentPid = $("#pid").val();
+                var studentMajor = $("#major").val();
+                var projPref = $("#project-pref option:selected").text();
+                console.log(fullName);
+                console.log(studentPid);
+                console.log(studentMajor);
+                console.log(projPref);
+                database.ref("students/" + "3").set({
+                    name: fullName,
+                    pid: studentPid,
+                    major: studentMajor,
+                    projectPref: projPref
+                });
+            }
+        </script>
+        <!-- jQuery -->
+        <script src="../jquery/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
