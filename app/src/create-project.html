@@ -1,83 +1,93 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Team Matching Tool - Create a Project</title>
+<html lang="en">
+  <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Website Font style -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+      <!-- Bootstrap Core CSS -->
+      <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="../css/login.css">
 
-        <!-- Bootstrap Core CSS -->
-        <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="../css/home.css">
-    </head>
+    <title>Create New Project</title>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <div class="tName">
+			<a class="navbar-brand" href="index.html">Team Matching Tool</a>
+    </div>
+		</div>
+		<div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right valign">
+        <!--<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Classes<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="classList"><a href="#">ENG 100D</a></li>
+						<li class="classList"><a href="#">ENG 100L</a></li>
+						<li class="classList"><a href="#">Create new class</a></li>
+					</ul>
+				</li>-->
+        <!--<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Teams<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="classList"><a href="#">ENG 100D</a></li>
+						<li class="classList"><a href="#">ENG 100L</a></li>
+						<li class="classList"><a href="#">Create new team</a></li>
+					</ul>
+				</li>-->
+                <li class="valign"><a href="#">My Classes</a></li>
+				<li class="valign"><a href="#">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<!-- start div container after header -->
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="center-align">Add a New Project Team</h1>
+    <p class="center-align">Specify project team conditions.</p>
+  </div>
+  <div class="container text-center">
+      <div class="row">
 
-    <body>
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="../index.html">Team Matching Tool</a>
+        <form id="student-form" action="class-page-teams-students.html" method="post" role="form">
+            <div class="form-group" style="width: 37.5%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+              <label for="name">Project Name:</label>
+              <input type="text" class="form-control" id="project-name">
             </div>
-            <ul class="nav navbar-nav">
-              <li><a href="../index.html">Home</a></li>
-            </ul>
-          </div>
-        </nav>
-
-        <div class="container text-center">
-            <div class="row">
-              <h2>New Project</h2>
-              <p>Please fill out project information.</p>
-
-              <form id="student-form" onsubmit="writeNewProject()">
-                  <div class="form-group">
-                      <label for="course">Course:</label>
-                      <select class="form-control" id="course">
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label for="project-name">Project Name:</label>
-                      <input type="text" class="form-control" id="project-name">
-                  </div>
-
-                  <button type="submit" class="btn btn-default">Submit</button>
-              </form>
+            <div class="form-group" style="width: 37.5%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+                <label for="pid">Project Team Max Size:</label>
+                <input type="text" class="form-control" id="project-max-size">
             </div>
-        </div>
-        <!-- jQuery -->
-        <script src="../jquery/jquery.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-        <script>
-          // Initialize Firebase
-          var config = {
-            apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
-            authDomain: "team-matching-tool.firebaseapp.com",
-            databaseURL: "https://team-matching-tool.firebaseio.com",
-            storageBucket: "team-matching-tool.appspot.com",
-            messagingSenderId: "209177574012"
-          };
-          firebase.initializeApp(config);
+            <div class="form-group" style="width: 20%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+                <input type="submit" name="create-project" id="create-project" tabindex="4" class="form-control btn btn-login" value="Create Project Team">
+            </div>
+        </form>
+      </div>
+  </div>
+</div>
 
-          var database = firebase.database();
-          var ref = database.ref("classes");
-         ref.once("value").then(function(snapshot) {
-              snapshot.forEach(function(classNumber) {
 
-                  var selectDropdown = $("#course");
-                  selectDropdown.append($('<option>', {
-                    text: classNumber.val().name
-                  }));
-              })
-          })
 
-          function writeNewProject() {
-                var courseName = $("#course option:selected").text();
-                var projectName = $("#project-name").val();
-          }
-        </script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    </body>
-
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/materialize.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../js/login.js"></script>
+</body>
 </html>

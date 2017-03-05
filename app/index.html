@@ -1,67 +1,172 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Team Matching Tool Home</title>
-        <!--<link rel="stylesheet" href="css/home.css">-->
-        <!-- Bootstrap Core CSS -->
-        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- Bootstrap Core CSS -->
+    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/login.css">
 
-        <link href="css/home.css" rel="stylesheet" >
-    </head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <body>
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#">Team Matching Tool</a>
-            </div>
-            <ul class="nav navbar-nav">
-              <li><a href="#">Home</a></li>
-            </ul>
-          </div>
-        </nav>
-        <header>
-            <div class="container text-center">
-                <div class="row">
-                  <p>Are you a professor or a student?</p>
-                  <a href="src/create-class.html">
-                      <button type="button" class="btn btn-default professor">Professor</button>
-                  </a>
-                  <a href="src/student-form.html">
-                    <button type="button" class="btn btn-default student">Student</button>
-                  </a>
-                </div>
-            </div>
-        </header>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
+    <title>Team Matching Tool Home</title>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+      <div class="tName">
+			<a class="navbar-brand" href="index.html">Team Matching Tool</a>
+    </div>
+		</div>
+		<div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right valign">
+				<li><a href="#">About</a></li>
+				<li class="valign"><a href="#">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<!-- start div container after header -->
+<!--<div class="jumbotron">
+  <div class="container">
+    <h1 class="center-align">T.M.T</h1>
+    <p class="center-align">Welcome to Team Matching Tool!</p>
+  </div>
+</div>-->
+<br><br><br><!-- Remove later -->
+<div class="container">
+     	<div class="row">
+ 			<div class="col-md-6 col-md-offset-3">
+ 				<div class="panel panel-login">
+ 					<div class="panel-heading">
+ 						<div class="row">
+ 							<div class="col-xs-6">
+ 								<a href="#" class="active" id="login-form-link">Professor</a>
+ 							</div>
+ 							<div class="col-xs-6">
+ 								<a href="#" id="register-form-link">Student</a>
+ 							</div>
+ 						</div>
+ 						<hr>
+ 					</div>
+ 					<div class="panel-body">
+ 						<div class="row">
+ 							<div class="col-lg-12">
+ 								<form id="login-form" action="src/my-classes.html" method="post" role="form" style="display: block;">
+ 									<div class="form-group">
+ 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+ 									</div>
+ 									<div class="form-group">
+ 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder=" Password">
+ 									</div>
+ 									<!--<div class="form-group text-center">
+ 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+ 										<label for="remember"> Remember Me</label>
+ 									</div>-->
+                                    <div class="form-group">
+ 										<div class="row">
+ 											<div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="signup-submit" id="signup-submit" tabindex="4" class="form-control btn btn-login" value="Sign Up">
+ 											</div>
+ 										</div>
+ 									</div>
+ 									<div class="form-group">
+ 										<div class="row">
 
-        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-        <script>
-          // Initialize Firebase
-          var config = {
-            apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
-            authDomain: "team-matching-tool.firebaseapp.com",
-            databaseURL: "https://team-matching-tool.firebaseio.com",
-            storageBucket: "team-matching-tool.appspot.com",
-            messagingSenderId: "209177574012"
-          };
-          firebase.initializeApp(config);
+ 											<div class="col-sm-6 col-sm-offset-3">
 
-          var database = firebase.database();
-          var rootRef = firebase.database().ref();
-        //   database.ref("students/1").once("value").then(function(snapshot) {
-        //       var studentName = snapshot.val().name;
-        //       console.log(studentName);
-        //     });
+ 												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+ 											</div>
+ 										</div>
+ 									</div>
+ 									<!--<div class="form-group">
+ 										<div class="row">
+ 											<div class="col-lg-12">
+ 												<div class="text-center">
+ 													<a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
+ 												</div>
+ 											</div>
+ 										</div>
+ 									</div>-->
+ 								</form>
 
-        </script>
-        <!-- jQuery -->
-        <script src="jquery/jquery.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    </body>
+ 								<form id="register-form" action="" method="post" role="form" style="display: none;">
+ 									<div class="form-group">
+                                        <label for="fullname">Full Name</label>
+ 										<input type="text" name="fullname" id="fullname" tabindex="1" class="form-control" value="">
+ 									</div>
+ 									<div class="form-group">
+                                        <label for="pid">PID</label>
+ 										<input type="text" name="pid" id="pid" tabindex="2" class="form-control">
+ 									</div>
+                                    <div class="form-group">
+                                        <label for="project-pref">Major</label>
+                                        <select class="form-control" id="major">
+                                          <option>Computer Science</option>
+                                          <option>Cognitive Science</option>
+                                          <option>Engineering (Electrical, Mechanical, Environmental, ...)
+                                          <option>Science (Biology, Chemistry, Physics, ...)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="project-pref">Project Preference 1</label>
+                                        <select class="form-control" id="project-pref1">
+                                          <option>Team Matching Tool</option>
+                                          <option>Baker Elementary</option>
+                                          <option>The Plastics</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="project-pref">Project Preference 2</label>
+                                        <select class="form-control" id="project-pref2">
+                                          <option>Team Matching Tool</option>
+                                          <option>Baker Elementary</option>
+                                          <option>The Plastics</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="project-pref">Project Preference 3</label>
+                                        <select class="form-control" id="project-pref3">
+                                          <option>Team Matching Tool</option>
+                                          <option>Baker Elementary</option>
+                                          <option>The Plastics</option>
+                                        </select>
+                                    </div>
+ 									<div class="form-group">
+ 										<div class="row">
+ 											<div class="col-sm-6 col-sm-offset-3">
+ 												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Submit">
+ 											</div>
+ 										</div>
+ 									</div>
 
+ 								</form>
+ 							</div>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+</div>
+<!-- jQuery -->
+<script src="../jquery/jquery.min.js"></script>
+
+<script type="text/javascript" src="../js/materialize.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../js/login.js"></script>
+</body>
 </html>
