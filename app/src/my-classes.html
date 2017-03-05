@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Team Matching Tool Home</title>
+    <!--<link rel="stylesheet" href="css/home.css">-->
+    <!-- Bootstrap Core CSS -->
+    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../css/home.css" rel="stylesheet" >
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Team Matching Tool</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+        </ul>
+    </div>
+</nav>
+<header>
+    <div class="container text-center">
+        <div class="row">
+            <p>My Classes</p>
+            <a href="../src/student-form.html">
+                <button type="button" class="btn btn-default">ENG100D</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
+        authDomain: "team-matching-tool.firebaseapp.com",
+        databaseURL: "https://team-matching-tool.firebaseio.com",
+        storageBucket: "team-matching-tool.appspot.com",
+        messagingSenderId: "209177574012"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+    var rootRef = firebase.database().ref();
+    //   database.ref("students/1").once("value").then(function(snapshot) {
+    //       var studentName = snapshot.val().name;
+    //       console.log(studentName);
+    //     });
+
+</script>
+<!-- jQuery -->
+<script src="jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
