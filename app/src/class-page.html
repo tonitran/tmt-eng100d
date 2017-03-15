@@ -127,7 +127,7 @@
         return vars;
     }
 
-    var className = getUrlVars()["key"];
+    var className = decodeURIComponent(getUrlVars()["key"]);
 
     $(document).ready(function () {
 
@@ -137,7 +137,7 @@
 
         var ref = database.ref("classes/" + className + "/students/");
 
-        classLabel.text(decodeURIComponent(className));
+        classLabel.text(className);
         createProj.attr('onclick', 'window.location.href="create-project.html?key=' + className + '"');
 
         ref.once('value')
