@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Website Font style -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <!-- Bootstrap Core CSS -->
-    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/login.css">
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <title>Team Matching Tool Home</title>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-      <div class="tName">
-			<a class="navbar-brand" href="index.html">Team Matching Tool</a>
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="tName">
+                <a class="navbar-brand" href="index.html">Team Matching Tool</a>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right valign">
+                <li><a href="#">About</a></li>
+                <li class="valign"><a href="#">Contact</a></li>
+            </ul>
+        </div>
     </div>
-		</div>
-		<div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right valign">
-				<li><a href="#">About</a></li>
-				<li class="valign"><a href="#">Contact</a></li>
-			</ul>
-		</div>
-	</div>
 </nav>
 <!-- start div container after header -->
 <!--<div class="jumbotron">
@@ -48,125 +49,203 @@
 </div>-->
 <br><br><br><!-- Remove later -->
 <div class="container">
-     	<div class="row">
- 			<div class="col-md-6 col-md-offset-3">
- 				<div class="panel panel-login">
- 					<div class="panel-heading">
- 						<div class="row">
- 							<div class="col-xs-6">
- 								<a href="#" class="active" id="login-form-link">Professor</a>
- 							</div>
- 							<div class="col-xs-6">
- 								<a href="#" id="register-form-link">Student</a>
- 							</div>
- 						</div>
- 						<hr>
- 					</div>
- 					<div class="panel-body">
- 						<div class="row">
- 							<div class="col-lg-12">
- 								<form id="login-form" action="src/my-classes.html" method="post" role="form" style="display: block;">
- 									<div class="form-group">
- 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
- 									</div>
- 									<div class="form-group">
- 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder=" Password">
- 									</div>
- 									<!--<div class="form-group text-center">
- 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
- 										<label for="remember"> Remember Me</label>
- 									</div>-->
-                                    <div class="form-group">
- 										<div class="row">
- 											<div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="signup-submit" id="signup-submit" tabindex="4" class="form-control btn btn-login" value="Sign Up">
- 											</div>
- 										</div>
- 									</div>
- 									<div class="form-group">
- 										<div class="row">
-
- 											<div class="col-sm-6 col-sm-offset-3">
-
- 												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
- 											</div>
- 										</div>
- 									</div>
- 									<!--<div class="form-group">
- 										<div class="row">
- 											<div class="col-lg-12">
- 												<div class="text-center">
- 													<a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
- 												</div>
- 											</div>
- 										</div>
- 									</div>-->
- 								</form>
-
- 								<form id="register-form" action="" method="post" role="form" style="display: none;">
- 									<div class="form-group">
-                                        <label for="fullname">Full Name</label>
- 										<input type="text" name="fullname" id="fullname" tabindex="1" class="form-control" value="">
- 									</div>
- 									<div class="form-group">
-                                        <label for="pid">PID</label>
- 										<input type="text" name="pid" id="pid" tabindex="2" class="form-control">
- 									</div>
-                                    <div class="form-group">
-                                        <label for="project-pref">Major</label>
-                                        <select class="form-control" id="major">
-                                          <option>Computer Science</option>
-                                          <option>Cognitive Science</option>
-                                          <option>Engineering (Electrical, Mechanical, Environmental, ...)
-                                          <option>Science (Biology, Chemistry, Physics, ...)</option>
-                                        </select>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="active" id="login-form-link">Professor</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" id="register-form-link">Student</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login-form" action="src/my-classes.html" method="post" role="form"
+                                  style="display: block;">
+                                <div class="form-group">
+                                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
+                                           placeholder="Username" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" tabindex="2"
+                                           class="form-control" placeholder=" Password">
+                                </div>
+                                <!--<div class="form-group text-center">
+                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                    <label for="remember"> Remember Me</label>
+                                </div>-->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="signup-submit" id="signup-submit" tabindex="4"
+                                                   class="form-control btn btn-login" value="Sign Up">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="project-pref">Project Preference 1</label>
-                                        <select class="form-control" id="project-pref1">
-                                          <option>Team Matching Tool</option>
-                                          <option>Baker Elementary</option>
-                                          <option>The Plastics</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="project-pref">Project Preference 2</label>
-                                        <select class="form-control" id="project-pref2">
-                                          <option>Team Matching Tool</option>
-                                          <option>Baker Elementary</option>
-                                          <option>The Plastics</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="project-pref">Project Preference 3</label>
-                                        <select class="form-control" id="project-pref3">
-                                          <option>Team Matching Tool</option>
-                                          <option>Baker Elementary</option>
-                                          <option>The Plastics</option>
-                                        </select>
-                                    </div>
- 									<div class="form-group">
- 										<div class="row">
- 											<div class="col-sm-6 col-sm-offset-3">
- 												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Submit">
- 											</div>
- 										</div>
- 									</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
 
- 								</form>
- 							</div>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
+                                        <div class="col-sm-6 col-sm-offset-3">
+
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
+                                                   class="form-control btn btn-login" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </form>
+
+                            <form id="register-form" action="" method="post" role="form" style="display: none;">
+                                <div class="form-group">
+                                    <label for="full-name">Full Name</label>
+                                    <input type="text" name="fullname" id="full-name" tabindex="1" class="form-control"
+                                           value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pid">PID</label>
+                                    <input type="text" name="pid" id="pid" tabindex="2" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="student-class">Class</label>
+                                    <select class="form-control" id="student-class" onchange="loadPreferences()"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="major">Major</label>
+                                    <select class="form-control" id="major">
+                                        <option>Computer Science</option>
+                                        <option>Cognitive Science</option>
+                                        <option>Engineering (Electrical, Mechanical, Environmental, ...)
+                                        <option>Science (Biology, Chemistry, Physics, ...)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="project-pref-1">Project Preference 1</label>
+                                    <select class="form-control" id="project-pref-1">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="project-pref-2">Project Preference 2</label>
+                                    <select class="form-control" id="project-pref-2">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="project-pref-3">Project Preference 3</label>
+                                    <select class="form-control" id="project-pref-3">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="register-submit" id="register-submit"
+                                                   tabindex="4" class="form-control btn btn-register" value="Submit"
+                                                   onclick="writeDataFirebase()">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- jQuery -->
-<script src="../jquery/jquery.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
 
-<script type="text/javascript" src="../js/materialize.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="../js/login.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/login.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
+        authDomain: "team-matching-tool.firebaseapp.com",
+        databaseURL: "https://team-matching-tool.firebaseio.com",
+        storageBucket: "team-matching-tool.appspot.com",
+        messagingSenderId: "209177574012"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    $(document).ready(function () {
+
+        var ref = database.ref("classes/");
+        var dropDown = $("#student-class");
+
+        ref.once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(function (project) {
+                    var json = JSON.parse(JSON.stringify(project.val()));
+                    dropDown.append('<option>' + json.name + '</option>');
+                });
+            });
+
+        loadPreferences();
+    });
+
+    function writeDataFirebase() {
+        var fullName = $("#full-name").val();
+        var studentPid = $("#pid").val();
+        var className = $("#student-class").val();
+        var studentMajor = $("#major").val();
+        var projPref1 = $("#project-pref-1").find("option:selected").text();
+        var projPref2 = $("#project-pref-2").find("option:selected").text();
+        var projPref3 = $("#project-pref-3").find("option:selected").text();
+
+        database.ref("classes/" + className + "/students/" + studentPid).set({
+            name: fullName,
+            pid: studentPid,
+            major: studentMajor,
+            projectPref1: projPref1,
+            projectPref2: projPref2,
+            projectPref3: projPref3
+        });
+    }
+
+    function loadPreferences() {
+        var pref1 = $("#project-pref-1");
+        var pref2 = $("#project-pref-2");
+        var pref3 = $("#project-pref-3");
+        pref1.empty();
+        pref2.empty();
+        pref3.empty();
+        var className = $("#student-class").find("option:selected").text();
+
+        console.log(className);
+        var ref = database.ref("classes/" + className + "/projects");
+
+        ref.once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(function (project) {
+                    var json = JSON.parse(JSON.stringify(project.val()));
+                    pref1.append('<option>' + json.name + '</option>');
+                    pref2.append('<option>' + json.name + '</option>');
+                    pref3.append('<option>' + json.name + '</option>');
+                });
+            });
+
+    }
+</script>
+
 </body>
 </html>
