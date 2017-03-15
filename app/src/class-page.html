@@ -118,7 +118,6 @@
 
     $(document).ready(function() {
 
-        var ref = database.ref("students/");
 
         var studentTable = $("#student-table");
         var classLabel = $("#class-title");
@@ -137,6 +136,7 @@
         }
 
         var params = getUrlVars();
+        var ref = database.ref("classes/" + params["key"] + "/students/");
 
         classLabel.text(decodeURIComponent(params["key"]));
 

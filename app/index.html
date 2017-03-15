@@ -120,6 +120,10 @@
                                     <input type="text" name="pid" id="pid" tabindex="2" class="form-control">
                                 </div>
                                 <div class="form-group">
+                                    <label for="student-class">Class</label>
+                                    <select class="form-control" id="student-class"></select>
+                                </div>
+                                <div class="form-group">
                                     <label for="major">Major</label>
                                     <select class="form-control" id="major">
                                         <option>Computer Science</option>
@@ -191,11 +195,25 @@
     firebase.initializeApp(config);
 
     var database = firebase.database();
-    var rootRef = firebase.database().ref();
+
+    $(document).ready(function () {
+
+        var ref = database.ref("classes/");
+        var dropDown = $("#student-class");
+
+        ref.once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(function (project) {
+                    var json = JSON.parse(JSON.stringify(project.val()));
+                    dropDown.append('<option>' + json.name + '</option>');
+                });
+            });
+    });
 
     function writeDataFirebase() {
         var fullName = $("#full-name").val();
         var studentPid = $("#pid").val();
+        var className = $("#student-class").val();
         var studentMajor = $("#major").val();
         var projPref1 = $("#project-pref-1").find("option:selected").text();
         var projPref2 = $("#project-pref-2").find("option:selected").text();
@@ -208,7 +226,7 @@
         console.log(projPref2);
         console.log(projPref3);
 
-        database.ref("students/" + studentPid).set({
+        database.ref("classes/" + className + "/students/" + studentPid).set({
             name: fullName,
             pid: studentPid,
             major: studentMajor,
