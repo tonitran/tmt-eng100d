@@ -86,9 +86,6 @@
 
         var studentTable = $("#my-classes");
 
-        var rowID = 0;
-        var id = "collection_";
-
         ref.once('value')
             .then(function (snapshot) {
                 snapshot.forEach(function (project) {

@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="student-class">Class</label>
-                                    <select class="form-control" id="student-class"></select>
+                                    <select class="form-control" id="student-class" onchange="loadPreferences()"></select>
                                 </div>
                                 <div class="form-group">
                                     <label for="major">Major</label>
@@ -135,25 +135,16 @@
                                 <div class="form-group">
                                     <label for="project-pref-1">Project Preference 1</label>
                                     <select class="form-control" id="project-pref-1">
-                                        <option>Team Matching Tool</option>
-                                        <option>Baker Elementary</option>
-                                        <option>The Plastics</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="project-pref-2">Project Preference 2</label>
                                     <select class="form-control" id="project-pref-2">
-                                        <option>Team Matching Tool</option>
-                                        <option>Baker Elementary</option>
-                                        <option>The Plastics</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="project-pref-3">Project Preference 3</label>
                                     <select class="form-control" id="project-pref-3">
-                                        <option>Team Matching Tool</option>
-                                        <option>Baker Elementary</option>
-                                        <option>The Plastics</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -208,6 +199,8 @@
                     dropDown.append('<option>' + json.name + '</option>');
                 });
             });
+
+        loadPreferences();
     });
 
     function writeDataFirebase() {
@@ -219,13 +212,6 @@
         var projPref2 = $("#project-pref-2").find("option:selected").text();
         var projPref3 = $("#project-pref-3").find("option:selected").text();
 
-        console.log(fullName);
-        console.log(studentPid);
-        console.log(studentMajor);
-        console.log(projPref1);
-        console.log(projPref2);
-        console.log(projPref3);
-
         database.ref("classes/" + className + "/students/" + studentPid).set({
             name: fullName,
             pid: studentPid,
@@ -234,6 +220,30 @@
             projectPref2: projPref2,
             projectPref3: projPref3
         });
+    }
+
+    function loadPreferences() {
+        var pref1 = $("#project-pref-1");
+        var pref2 = $("#project-pref-2");
+        var pref3 = $("#project-pref-3");
+        pref1.empty();
+        pref2.empty();
+        pref3.empty();
+        var className = $("#student-class").find("option:selected").text();
+
+        console.log(className);
+        var ref = database.ref("classes/" + className + "/projects");
+
+        ref.once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(function (project) {
+                    var json = JSON.parse(JSON.stringify(project.val()));
+                    pref1.append('<option>' + json.name + '</option>');
+                    pref2.append('<option>' + json.name + '</option>');
+                    pref3.append('<option>' + json.name + '</option>');
+                });
+            });
+
     }
 </script>
 
