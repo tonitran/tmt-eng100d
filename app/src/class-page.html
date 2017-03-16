@@ -127,7 +127,7 @@
         return vars;
     }
 
-    var className = getUrlVars()["key"];
+    var className = decodeURIComponent(getUrlVars()["key"]);
 
     $(document).ready(function () {
 
@@ -144,6 +144,7 @@
             .then(function (snapshot) {
                 snapshot.forEach(function (project) {
                     var json = JSON.parse(JSON.stringify(project.val()));
+                    /*
                     studentTable.append(
                         '<tr>' +
                         '<td>' + json.name + '</td>' +
@@ -153,10 +154,115 @@
                         '<td>' + json.projectPref2 + '</td>' +
                         '<td>' + json.projectPref3 + '</td>' +
                         '</tr>');
+                        */
                 });
             });
+
+        getStudents();
     });
-    
+
+    function getStudents() {
+        var ref = database.ref("classes/" + className + "/students/");
+
+        ref.once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(function (project) {
+                    var json = JSON.parse(JSON.stringify(project.val()));
+                    console.log(json);
+                });
+            });
+
+    }
+
+    function createTeams(students, projects) {
+        var teams = [];
+        for (i = 0; i < projects.length; i++) {
+
+            var toAdd = {
+                Name: projects[i].name,
+                Size: projects[i].size,
+                Students: []
+            };
+
+            teams.push(toAdd)
+        }
+
+        while (students.length > 0) {
+            numStudent = students.length;
+            toPick = Math.floor(Math.random() * (numStudent + 1));
+            currStudent = students[toPick];
+            if (currStudent != null) {
+                console.log(currStudent.Name);
+                for (j = 0; j < teams.length; j++) {
+                    if (teams[j].Name == currStudent.projectPref1) {
+                        first = teams[j]
+                    }
+                    if (teams[j].Name == currStudent.projectPref2) {
+                        second = teams[j]
+                    }
+                    if (teams[j].Name == currStudent.projectPref3) {
+                        third = teams[j]
+                    }
+                }
+                console.log("first choice is: " + first.Name);
+                console.log("second choice is: " + second.Name);
+                console.log("third choice is: " + third.Name);
+
+                if (first.Students.length < first.Size) {
+                    console.log("first choice open");
+                    var temp = first.Students;
+                    temp.push(currStudent);
+                    first.Students = temp;
+                    for (k = 0; k < teams.length; k++) {
+                        if (teams[k].Name == first.Name) {
+                            teams[k].Students = first.Students
+                        }
+                    }
+                }
+                else {
+                    if (second.Students.length < second.Size) {
+                        console.log("first not open but second open");
+                        var temp = second.Students;
+                        temp.push(currStudent);
+                        second.Students = temp;
+                        for (k = 0; k < teams.length; k++) {
+                            if (teams[k].Name == second.Name) {
+                                teams[k].Students = second.Students
+                            }
+                        }
+                    }
+                    else {
+                        if (third.Students.length < third.Size) {
+                            console.log("first and second not open but third is");
+                            var temp = third.Students;
+                            temp.push(currStudent);
+                            third.Students = temp;
+                            for (k = 0; k < teams.length; k++) {
+                                if (teams[k].Name == first.Name) {
+                                    teams[k].Students = first.Students
+                                }
+                            }
+                        }
+                        else {
+                            noTeam.push(currStudent)
+                        }
+                    }
+                }
+
+            }
+
+            students.splice(toPick, 1);
+
+            for (j = 0; j < teams.length; j++) {
+                console.log(teams[j].Name);
+                console.log(teams[j].Students);
+            }
+            console.log("These people have no assigned teams");
+            console.log(noTeam);
+
+            return teams
+        }
+    }
 </script>
 </body>
 </html>
