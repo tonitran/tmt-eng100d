@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Website Font style -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <!-- Bootstrap Core CSS -->
-    <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/login.css">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Website Font style -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <!-- Bootstrap Core CSS -->
+        <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/login.css">
 
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection"/>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection"/>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-    <title>Class Page</title>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="tName">
-                <a class="navbar-brand" href="../index.html">Team Matching Tool</a>
-            </div>
-        </div>
-        <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right valign">
-                <!--<li class="dropdown">
+        <title>Class Page</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                                                          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="tName">
+                        <a class="navbar-brand" href="../index.html">Team Matching Tool</a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right valign">
+                        <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Classes<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="classList"><a href="#">ENG 100D</a></li>
-                                <li class="classList"><a href="#">ENG 100L</a></li>
-                                <li class="classList"><a href="#">Create new class</a></li>
+                            <li class="classList"><a href="#">ENG 100D</a></li>
+                            <li class="classList"><a href="#">ENG 100L</a></li>
+                            <li class="classList"><a href="#">Create new class</a></li>
                             </ul>
-                        </li>-->
-                <!--<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Teams<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                            </li>-->
+                            <!--<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Teams<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
                                 <li class="classList"><a href="#">ENG 100D</a></li>
                                 <li class="classList"><a href="#">ENG 100L</a></li>
                                 <li class="classList"><a href="#">Create new team</a></li>
@@ -86,103 +86,82 @@
                 <br>
             </div>
         </div>
-        <div class="row">
-            <p><u>Student Table</u></p>
-            <table id="student-table" class="table">
-                <thead>
-                <tr>
-                    <th>Full Name</th>
-                    <th>PID</th>
-                    <th>Major</th>
-                    <th>Project Preference 1</th>
-                    <th>Project Preference 2</th>
-                    <th>Project Preference 3</th>
-                </tr>
-                </thead>
-            </table>
-            <br><br>
-            <p>Match teams using student project preference as the main factor.</p>
-            <button onclick="populateTeamsTable()" type="button" class="btn btn-default">Match Teams Using Project
-                Preference
-            </button>
-        </div>
-    </div>
-</div>
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="../js/materialize.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="../js/login.js"></script>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="../js/materialize.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <script src="../js/login.js"></script>
 
 
-<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
-        authDomain: "team-matching-tool.firebaseapp.com",
-        databaseURL: "https://team-matching-tool.firebaseio.com",
-        storageBucket: "team-matching-tool.appspot.com",
-        messagingSenderId: "209177574012"
-    };
-    firebase.initializeApp(config);
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+        <script>
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
+    authDomain: "team-matching-tool.firebaseapp.com",
+    databaseURL: "https://team-matching-tool.firebaseio.com",
+    storageBucket: "team-matching-tool.appspot.com",
+    messagingSenderId: "209177574012"
+};
+firebase.initializeApp(config);
 
-    var database = firebase.database();
+var database = firebase.database();
 
-    function getUrlVars() {
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for (var i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars;
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
     }
+    return vars;
+}
 
-    var className = decodeURIComponent(getUrlVars()["key"]);
-    var students = [];
-    var projects = [];
+var className = decodeURIComponent(getUrlVars()["key"]);
+var students = [];
+var projects = [];
 
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        var studentTable = $("#student-table");
-        var projTeams = $("#proj-teams")
+    var studentTable = $("#student-table");
+    var projTeams = $("#proj-teams")
 
         var classLabel = $("#class-title");
-        var createProj = $("#create-project");
+    var createProj = $("#create-project");
 
-        var ref = database.ref("classes/" + className + "/students/");
+    var ref = database.ref("classes/" + className + "/students/");
 
-        classLabel.text(className);
-        createProj.attr('onclick', 'window.location.href="create-project.html?key=' + className + '"');
+    classLabel.text(className);
+    createProj.attr('onclick', 'window.location.href="create-project.html?key=' + className + '"');
 
-        ref.once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(function (project) {
-                    var json = JSON.parse(JSON.stringify(project.val()));
-                    studentTable.append(
-                        '<tr>' +
-                        '<td>' + json.name + '</td>' +
-                        '<td>' + json.pid + '</td>' +
-                        '<td>' + json.major + '</td>' +
-                        '<td>' + json.projectPref1 + '</td>' +
-                        '<td>' + json.projectPref2 + '</td>' +
-                        '<td>' + json.projectPref3 + '</td>' +
-                        '</tr>');
-                });
+    ref.once('value')
+        .then(function (snapshot) {
+            snapshot.forEach(function (project) {
+                var json = JSON.parse(JSON.stringify(project.val()));
+                /*
+                   studentTable.append(
+                   '<tr>' +
+                   '<td>' + json.name + '</td>' +
+                   '<td>' + json.pid + '</td>' +
+                   '<td>' + json.major + '</td>' +
+                   '<td>' + json.projectPref1 + '</td>' +
+                   '<td>' + json.projectPref2 + '</td>' +
+                   '<td>' + json.projectPref3 + '</td>' +
+                   '</tr>');
+                 */
             });
+        });
+    ref = database.ref("classes/" + className + "/projects/");
+    ref.once('value')
+        .then(function (snapshot) {
+            snapshot.forEach(function (project) {
+                var json = JSON.parse(JSON.stringify(project.val()));
+                var tableid = (json.name).replace(/\s+/g, '');
 
-        ref = database.ref("classes/" + className + "/projects/");
-        ref.once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(function (project) {
-                    var json = JSON.parse(JSON.stringify(project.val()));
-                    var tableid = (json.name).replace(/\s+/g, '');
-
-                    projTeams.prepend(
+                projTeams.prepend(
                         '<p>' + json.name + '</p>' +
                         '<table id="' + tableid + '" class="table" ondrop = "dropItem(event)" ondragover = "canDrop(event)" >' +
                         '<thead>' +
@@ -197,54 +176,57 @@
                         '</thead>' +
                         '</table>' +
                         '<br>'
-                    );
-                });
+                        );
             });
+        });
 
-        initStudents();
-        initProjects();
-    });
+    initStudents();
+    initProjects();
+});
 
-    function initStudents() {
-        var ref = database.ref("classes/" + className + "/students/");
+function initStudents() {
+    getStudents();
+});
 
-        ref.once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(function (project) {
-                    var json = JSON.parse(JSON.stringify(project.val()));
-                    students.push(json);
+function getStudents() {
+    var ref = database.ref("classes/" + className + "/students/");
 
-                });
+    ref.once('value')
+        .then(function (snapshot) {
+            snapshot.forEach(function (project) {
+                var json = JSON.parse(JSON.stringify(project.val()));
+                students.push(json);
             });
-    }
+        });
+}
 
-    function initProjects() {
+function initProjects() {
 
-        var ref = database.ref("classes/" + className + "/projects/");
+    var ref = database.ref("classes/" + className + "/projects/");
 
-        ref.once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(function (project) {
-                    var json = JSON.parse(JSON.stringify(project.val()));
-                    projects.push(json);
-                });
+    ref.once('value')
+        .then(function (snapshot) {
+            snapshot.forEach(function (project) {
+                var json = JSON.parse(JSON.stringify(project.val()));
+                projects.push(json);
             });
-    }
+        });
+}
 
-    function populateTeamsTable() {
-        var teams = createTeams();
+function populateTeamsTable() {
+    var teams = createTeams();
 
-        console.log(teams);
+    console.log(teams);
 
-        for (var i = 0; i < teams.length; i++) {
-            var projName = teams[i].Name;
-            var tableid = (projName).replace(/\s+/g, '');
-            var students = teams[i].Students;
+    for (var i = 0; i < teams.length; i++) {
+        var projName = teams[i].Name;
+        var tableid = (projName).replace(/\s+/g, '');
+        var students = teams[i].Students;
 
-            var table = $('#' + tableid);
+        var table = $('#' + tableid);
 
-            for (var j = 0; j < students.length; j++) {
-                var student = students[j];
+        for (var j = 0; j < students.length; j++) {
+            var student = students[j];
 
                 if (student != null) {
                     table.append(
@@ -256,27 +238,37 @@
                         '<td>' + student.projectPref2 + '</td>' +
                         '<td>' + student.projectPref3 + '</td>' +
                         '</tr>');
-                }
             }
         }
-
     }
 
-    function createTeams() {
-        var teams = []
+}
+
+function createTeams() {
+    var teams = []
         var studentproj = []
         // add a Students parameter to each project which will hold which students are in the project
         for (i = 0; i < projects.length; i++) {
-            var toAdd = {
-                Name: projects[i].name,
-                Size: projects[i].size,
-                Students: []
-            }
-            teams.push(toAdd)
-        }
+            =======
+                console.log(json);
+        });
+});
 
-        //"teams" is our output, where it holds all the projects and the students assigned to them
-        var j
+}
+
+function createTeams(students, projects) {
+    var teams = [];
+    for (i = 0; i < projects.length; i++) {
+        var toAdd = {
+            Name: projects[i].name,
+            Size: projects[i].size,
+            Students: []
+        }
+        teams.push(toAdd)
+    }
+
+    //"teams" is our output, where it holds all the projects and the students assigned to them
+    var j
         var k
         var toPick
         var currStudent
@@ -306,12 +298,25 @@
                     	 teamName [currStudent.name] = teams[j].Name
          //		    	 console.log("adding " + currStudent.name + " " +  teams[j].Name)
 
-                    }
+            teams.push(toAdd)
+        }
+
+    while (students.length > 0) {
+        numStudent = students.length;
+        toPick = Math.floor(Math.random() * (numStudent + 1));
+        currStudent = students[toPick];
+        if (currStudent != null) {
+            console.log(currStudent.Name);
+            for (j = 0; j < teams.length; j++) {
+                if (teams[j].Name == currStudent.projectPref1) {
+                    first = teams[j]
                 }
- 		 //    console.log("adding " + currStudent.name + teams[j].Name)
-            	students.splice(0, 1)
-            	sortedStudent.push(students[0])
-            	
+                if (teams[j].Name == currStudent.projectPref2) {
+                    second = teams[j]
+                }
+                if (teams[j].Name == currStudent.projectPref3) {
+                    third = teams[j]
+                }
             }
         } 
         /*
@@ -437,13 +442,11 @@
         }
         teams.push(leftovers)
 
-        /*
-         for (j = 0; j < teams.length; j++) {
-         console.log(teams[j].Name + ":")
-         var stu = teams[j].Students
-         for (i = 0; i < stu.length; i++) {
-         console.log(stu[i].name)
-         }
+                var leftovers = {
+                    Name: "No Assigned Team",
+                    Students: noTeam
+                }
+                teams.push(leftovers)
 
          }
          */
