@@ -282,7 +282,11 @@
             students.splice(toPick,1)
         }
 
-
+        var leftovers = {
+            Name: "No Assigned Team",
+            Students: noTeam
+        }
+        teams.push(leftovers)
 
         for(j = 0; j < teams.length; j++){
             console.log(teams[j].Name + ":")
@@ -291,14 +295,8 @@
                 console.log(stu[i].name)
             }
             
-            }
-        console.log("These people have no assigned teams")
-        if(noTeam.length > 0){
-            console.log(noTeam)
         }
-        else{
-            console.log("Everyone is in a team!")
-        }
+        return teams
         
     }
 </script>
