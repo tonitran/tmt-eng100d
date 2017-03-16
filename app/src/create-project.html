@@ -115,7 +115,7 @@
         return vars;
     }
 
-    var className = getUrlVars()["key"];
+    var className = decodeURIComponent(getUrlVars()["key"]);
 
     $(document).ready(function () {
         var submit = $("#student-form");
