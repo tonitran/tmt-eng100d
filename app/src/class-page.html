@@ -189,6 +189,108 @@
     }
 
     function createTeams() {
+var teams = []
+var studentproj = []
+// add a Students parameter to each project which will hold which students are in the project
+for( i = 0; i < projects.length; i++){
+    var toAdd = {
+        Name: projects[i].name,
+        Size: projects[i].size,
+        Students: []
+    }
+    teams.push(toAdd)
+}
+
+//"teams" is our output, where it holds all the projects and the students assigned to them
+var j
+var k
+var toPick
+var currStudent
+var first
+var second
+var third
+var numStudent
+var currTeam
+var noTeam = []
+var tempStudent = []
+var numStudents = students.length
+
+//PROGRAM STARTS HERE 
+while(students.length > 0){
+    numStudent = students.length
+    toPick = Math.floor(Math.random()*(numStudent+1));
+    currStudent = students[toPick]
+    if(currStudent != null){
+    console.log(currStudent.name)
+        for(j = 0; j < teams.length; j++){
+            if(teams[j].Name == currStudent.projectPref1){
+                first = teams[j]
+                console.log(first.Name)
+            }
+            if(teams[j].Name == currStudent.projectPref2){
+                second = teams[j]
+            }
+            if(teams[j].Name == currStudent.projectPref3){
+                third = teams[j]
+            }
+        }
+        console.log( "first choice is: " + first.Name)
+        console.log( "second choice is: " + second.Name)
+        console.log( "third choice is: " + third.Name )
+        
+        if(first.Students.length < first.Size){
+            console.log("first choice open")
+            var temp = first.Students
+            temp.push(currStudent)
+            first.Students = temp
+            for(k = 0; k < teams.length; k++){
+                if(teams[k].Name == first.Name){
+                    teams[k].Students = first.Students
+                }
+            }
+        }
+        else{
+            if(second.Students.length < second.Size){
+                console.log("first not open but second open")
+                var temp = second.Students
+                temp.push(currStudent)
+                second.Students = temp
+                for(k = 0; k < teams.length; k++){
+                    if(teams[k].Name == second.Name){
+                        teams[k].Students = second.Students
+                    }
+                }
+            }
+            else{
+                if(third.Students.length < third.Size){
+                    console.log("first and second not open but third is")
+                    var temp = third.Students
+                    temp.push(currStudent)
+                    third.Students = temp
+                    for(k = 0; k < teams.length; k++){
+                        if(teams[k].Name == third.Name){
+                            teams[k].Students = third.Students
+                        }
+                    }
+                }
+                else{
+                    noTeam.push(currStudent)
+                }
+            }
+        }
+        
+    }
+    students.splice(toPick,1)
+}
+
+
+
+for(j = 0; j < teams.length; j++){
+    console.log(teams[j].Name)
+    console.log(teams[j].Students)
+}
+console.log("These people have no assigned teams")
+console.log(noTeam)
     }
 </script>
 </body>
