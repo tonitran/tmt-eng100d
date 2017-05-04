@@ -71,7 +71,7 @@
             <p><u>Project Teams</u></p>
             <div id="proj-teams">
                 <p>No Assigned Team</p>
-                <table id="NoAssignedTeam" class="table">
+                <table id="NoAssignedTeam" class="table" ondrop = "dropItem(event)" ondragover = "canDrop(event)">
                     <thead>
                     <tr>
                         <th>Full Name</th>
@@ -184,7 +184,7 @@
 
                     projTeams.prepend(
                         '<p>' + json.name + '</p>' +
-                        '<table id="' + tableid + '" class="table">' +
+                        '<table id="' + tableid + '" class="table" ondrop = "dropItem(event)" ondragover = "canDrop(event)" >' +
                         '<thead>' +
                         '<tr>' +
                         '<th>Name</th>' +
@@ -248,7 +248,7 @@
 
                 if (student != null) {
                     table.append(
-                        '<tr>' +
+                        '<tr id = "' + student.pid + '" draggable = "true" ondragstart = "dragItem(event)" >' +
                         '<td>' + student.name + '</td>' +
                         '<td>' + student.pid + '</td>' +
                         '<td>' + student.major + '</td>' +
@@ -376,6 +376,21 @@
          */
         return teams
 
+    }
+    function canDrop(e) {
+        e.preventDefault();
+    }
+    function dragItem(e) {
+        e.dataTransfer.setData("text", e.target.id);
+    }
+    function dropItem(e) {
+        var placer = e.target;
+        e.preventDefault();
+	var info = e.dataTransfer.getData("text");
+	while(placer.tagName != "TABLE") {
+            placer = placer.parentNode;
+	}
+	placer.appendChild(document.getElementById(info));
     }
 </script>
 </body>
