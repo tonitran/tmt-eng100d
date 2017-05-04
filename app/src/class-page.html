@@ -288,76 +288,93 @@
         var noTeam = []
         var tempStudent = []
         var numStudents = students.length
-
+		var sortedStudent = []
+        var teamName = []
+        var added
+        var index
         //PROGRAM STARTS HERE
         while (students.length > 0) {
-            numStudent = students.length
-            toPick = Math.floor(Math.random() * (numStudent + 1));
-            currStudent = students[toPick]
-            if (currStudent != null) {
-                //console.log(currStudent.name)
+  
+            while (students.length != 0) {
+            	currStudent = students[0]
+                
                 for (j = 0; j < teams.length; j++) {
                     if (teams[j].Name == currStudent.projectPref1) {
-                        first = teams[j]
-                    }
-                    if (teams[j].Name == currStudent.projectPref2) {
-                        second = teams[j]
-                    }
-                    if (teams[j].Name == currStudent.projectPref3) {
-                        third = teams[j]
-                    }
-                }
-                /*
-                 console.log("first choice is: " + first.Name)
-                 console.log("second choice is: " + second.Name)
-                 console.log("third choice is: " + third.Name)
-                 */
+                    	 teams[j].Students.push(currStudent)
+                    	 teamName [currStudent.name] = teams[j].Name
+         //		    	 console.log("adding " + currStudent.name + " " +  teams[j].Name)
 
-                if (first.Students.length < first.Size) {
-                    //   console.log("first choice open")
-                    var temp = first.Students
-                    temp.push(currStudent)
-                    first.Students = temp
-                    for (k = 0; k < teams.length; k++) {
-                        if (teams[k].Name == first.Name) {
-                            teams[k].Students = first.Students
-                        }
                     }
                 }
-                else {
-                    if (second.Students.length < second.Size) {
-                        //      console.log("first not open but second open")
-                        var temp = second.Students
-                        temp.push(currStudent)
-                        second.Students = temp
-                        for (k = 0; k < teams.length; k++) {
-                            if (teams[k].Name == second.Name) {
-                                teams[k].Students = second.Students
-                            }
-                        }
-                    }
-                    else {
-                        if (third.Students.length < third.Size) {
-                            //         console.log("first and second not open but third is")
-                            var temp = third.Students
-                            temp.push(currStudent)
-                            third.Students = temp
-                            for (k = 0; k < teams.length; k++) {
-                                if (teams[k].Name == third.Name) {
-                                    teams[k].Students = third.Students
-                                }
-                            }
-                        }
-                        else {
-                            noTeam.push(currStudent)
-                        }
-                    }
-                }
-
+ 		 //    console.log("adding " + currStudent.name + teams[j].Name)
+            	students.splice(0, 1)
+            	sortedStudent.push(students[0])
+            	
             }
-            students.splice(toPick, 1)
-        }
-
+        }   
+       	while(sortedStudent.length != 0)
+       	{
+       		added = false
+       	 	numStudent = sortedStudent.length
+       		toPick = Math.floor(Math.random() * (numStudent + 1));
+       	 	
+       	 	currStudent = sortedStudent[toPick]
+       		if(currStudent != undefined)
+       		{
+       			for (j = 0; j < teams.length; j++) 
+       			{
+                    if (teams[j].Name == teamName[currStudent.name]) 
+                    {
+                    	if(teams[j].Students.length <= teams[j].Size )
+                    	{
+                    	//	 console.log( "TTT " + teamName[currStudent.name] + " "+ currStudent.name)
+                    		added = true
+                    		break
+                    	}
+                    	else
+                    	{
+                    		for(k = 0; k< teams.length; k++)
+	                    	{
+	                    		if(teams[k].Name == currStudent.projectPref2 && teams[k].Students.length < teams[k].Size && added == false)
+	                    		{
+	                    			added = true
+	                    			index = teams[j].Students.indexOf(currStudent);
+	                    			if (index > -1) {
+	                    				teams[j].Students.splice(index, 1);
+	                    			}
+	                    			teams[k].Students.push(currStudent)
+	                    		}
+	                    	}
+	                    	for(k = 0; k< teams.length; k++)
+	                    	{
+	                    		if(teams[k].Name == currStudent.projectPref3 && teams[k].Students.length < teams[k].Size && added == false)
+	                    		{
+	                    			added = true
+	                    			index = teams[j].Students.indexOf(currStudent);
+	                    			if (index > -1) {
+	                    				teams[j].Students.splice(index, 1);
+	                    			}
+	                    			teams[k].Students.push(currStudent)
+	
+	                    		}
+	                    	}
+                    	}
+                    }
+                    if(added == false && j == teams.length - 1)
+           			{
+           				index = teams[j].Students.indexOf(currStudent);
+            			if (index > -1) {
+            				teams[j].Students.splice(index, 1);
+            			}
+           				noTeam.push(currStudent)
+           				 console.log(index + " " + teamName[currStudent.name] + " "+ currStudent.name)
+           			}
+                }
+       			
+       		} 
+       	 	sortedStudent.splice(toPick,1)
+       	}
+                 
         var leftovers = {
             Name: "No Assigned Team",
             Students: noTeam
