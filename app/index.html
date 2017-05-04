@@ -84,7 +84,8 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="submit" name="signup-submit" id="signup-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Sign Up">
+                                                   class="form-control btn btn-login" value="Sign Up"
+                                                   onClick="writeProfessorData()">
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +95,8 @@
                                         <div class="col-sm-6 col-sm-offset-3">
 
                                             <input type="submit" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Log In">
+                                                   class="form-control btn btn-login" value="Log In"
+                                                   onClick="readProfessorData()">
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +156,7 @@
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="submit" name="register-submit" id="register-submit"
                                                    tabindex="4" class="form-control btn btn-register" value="Submit"
-                                                   onclick="writeDataFirebase()">
+                                                   onclick="writeStudentData()">
                                         </div>
                                     </div>
                                 </div>
@@ -188,10 +190,11 @@
     firebase.initializeApp(config);
 
     var database = firebase.database();
-
+    
+    // code inside this function will only run once document is ready
     $(document).ready(function () {
 
-        var ref = database.ref("classes/");
+        var ref = database.ref();
         var dropDown = $("#student-class");
 
         ref.once('value')
@@ -204,8 +207,42 @@
 
         loadPreferences();
     });
+    
+    // write professor information into firebase 
+    function writeProfessorData() {
+      var profName = $("#username").val();
+      var profPwd = $("#password").val();
 
-    function writeDataFirebase() {
+      database.ref(profName + "/info").set({
+        username: profName,
+        password: profPwd
+      });
+    }
+    
+    // reads professor information -- for persistence
+    function readProfessorData() {
+      var profName = $("#username").val();
+      var profPwd = $("#password").val();
+      
+      // search tree for profName
+      //    if profName exists, see if the password given matches the profName's
+      //    password in the tree
+      //
+      //    if profName doesn't exist, this is a log-in error
+
+      database.ref().orderByChild("username").equalTo(profName).once("value", function(snapshot) {
+        var userData = snapshot.val();
+        if (userData) {
+        // TODO
+        
+        }
+      }
+
+//      if (foundName.ref().isEqual(profName)) 
+
+    }
+
+    function writeStudentData() {
         var fullName = $("#full-name").val();
         var studentPid = $("#pid").val();
         var className = $("#student-class").val();
