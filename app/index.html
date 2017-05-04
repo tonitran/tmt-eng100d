@@ -69,8 +69,8 @@
                             <form id="login-form" action="src/my-classes.html" method="post" role="form"
                                   style="display: block;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
-                                           placeholder="Username" value="">
+                                    <input type="text" name="email" id="email" tabindex="1" class="form-control"
+                                           placeholder="Email" value="">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2"
@@ -208,38 +208,38 @@
         loadPreferences();
     });
     
+    function getInfo() {
+      database.auth().onAuthStateChanged(function(user) {
+        if(user) {
+          var email = user.email;
+          var uid = user.uid
+        }
+      }
+    }
+
     // write professor information into firebase 
     function writeProfessorData() {
-      var profName = $("#username").val();
+      var profEmail = $("#email").val();
       var profPwd = $("#password").val();
-
-      database.ref(profName + "/info").set({
-        username: profName,
-        password: profPwd
+      
+      database.auth().createUserWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
+        // handle errors
+        var errorCode = error.code;
+        var errorMsg = error.message;
       });
     }
     
     // reads professor information -- for persistence
     function readProfessorData() {
-      var profName = $("#username").val();
+      var profEmail = $("#email").val();
       var profPwd = $("#password").val();
       
-      // search tree for profName
-      //    if profName exists, see if the password given matches the profName's
-      //    password in the tree
-      //
-      //    if profName doesn't exist, this is a log-in error
-
-      database.ref().orderByChild("username").equalTo(profName).once("value", function(snapshot) {
-        var userData = snapshot.val();
-        if (userData) {
-        // TODO
-        
-        }
-      }
-
-//      if (foundName.ref().isEqual(profName)) 
-
+      database.auth().signInWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
+        // handle errors
+        var errorCode = error.code;
+        var errorMsg = error.message;
+      });
+    
     }
 
     function writeStudentData() {
