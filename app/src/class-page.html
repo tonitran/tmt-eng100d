@@ -289,9 +289,11 @@
         var tempStudent = []
         var numStudents = students.length
 		var sortedStudent = []
+        var doneStudent = []
         var teamName = []
         var added
         var index
+        var counter = 0
         //PROGRAM STARTS HERE
         while (students.length > 0) {
   
@@ -312,8 +314,9 @@
             	
             }
         }   
-       	while(sortedStudent.length != 0)
+       	while(counter < 1000)
        	{
+       		counter ++;
        		added = false
        	 	numStudent = sortedStudent.length
        		toPick = Math.floor(Math.random() * (numStudent + 1));
@@ -343,6 +346,7 @@
 	                    				teams[j].Students.splice(index, 1);
 	                    			}
 	                    			teams[k].Students.push(currStudent)
+	                    			teamName[currStudent.name] = teams[k].Name
 	                    		}
 	                    	}
 	                    	for(k = 0; k< teams.length; k++)
@@ -355,7 +359,7 @@
 	                    				teams[j].Students.splice(index, 1);
 	                    			}
 	                    			teams[k].Students.push(currStudent)
-	
+	                    			teamName[currStudent.name] = teams[k].Name
 	                    		}
 	                    	}
                     	}
@@ -366,13 +370,41 @@
             			if (index > -1) {
             				teams[j].Students.splice(index, 1);
             			}
-           				noTeam.push(currStudent)
+           				//noTeam.push(currStudent)
            				 console.log(index + " " + teamName[currStudent.name] + " "+ currStudent.name)
            			}
                 }
        			
        		} 
+       	}
+       	while(sortedStudent.length != 0)
+       	{
+       		numStudent = sortedStudent.length
+       		toPick = Math.floor(Math.random() * (numStudent + 1));
+       	 	
+       	 	currStudent = sortedStudent[toPick]
+       		if(currStudent != undefined)
+       		{
+       			for (j = 0; j < teams.length; j++) 
+       			{
+                    if (teams[j].Name == teamName[currStudent.name]) 
+                    {
+                    	if(teams[j].Students.length > teams[j].Size )
+                    	{
+                    		index = teams[j].Students.indexOf(currStudent);
+            				if (index > -1)
+            				{
+            					teams[j].Students.splice(index, 1);
+            				}
+           					noTeam.push(currStudent)
+                    	}
+                    	
+                    }
+                }
+       			
+       		} 
        	 	sortedStudent.splice(toPick,1)
+       	 	
        	}
                  
         var leftovers = {
