@@ -313,99 +313,123 @@
             	sortedStudent.push(students[0])
             	
             }
-        }   
-       	while(counter < 1000)
+        } 
+        /*
+			This rundom algorithm  will end if:
+				1. No student in the "noTeam" team
+				2. The algorithm runs 1000 times
+		*/
+       	while(true)
        	{
-       		counter ++;
-       		added = false
-       	 	numStudent = sortedStudent.length
-       		toPick = Math.floor(Math.random() * (numStudent + 1));
-       	 	
-       	 	currStudent = sortedStudent[toPick]
-       		if(currStudent != undefined)
+       		counter++
+       		console.log(counter)
+       		if(counter > 1000) break
+       		noTeam = []
+       		while(sortedStudent.length != 0)
        		{
-       			for (j = 0; j < teams.length; j++) 
-       			{
-                    if (teams[j].Name == teamName[currStudent.name]) 
-                    {
-                    	if(teams[j].Students.length <= teams[j].Size )
-                    	{
-                    	//	 console.log( "TTT " + teamName[currStudent.name] + " "+ currStudent.name)
-                    		added = true
-                    		break
-                    	}
-                    	else
-                    	{
-                    		for(k = 0; k< teams.length; k++)
+	       		//get the number of the student we have
+	       	 	numStudent = sortedStudent.length
+	       	 	
+	       		added = false
+	       	 	//randomly pick one student
+	       		toPick = Math.floor(Math.random() * (numStudent + 1));
+	       	 	currStudent = sortedStudent[toPick]
+	       	 	//check the validity of the student's name
+	       		if(currStudent != undefined)
+	       		{
+	       			for (j = 0; j < teams.length; j++) 
+	       			{
+	       				//get to the team where the student is assigned
+	                    if (teams[j].Name == teamName[currStudent.name]) 
+	                    {
+	                    	//if the team is not full, then we don't need to remove the student from the team
+	                    	if(teams[j].Students.length <= teams[j].Size )
 	                    	{
-	                    		if(teams[k].Name == currStudent.projectPref2 && teams[k].Students.length < teams[k].Size && added == false)
-	                    		{
-	                    			added = true
-	                    			index = teams[j].Students.indexOf(currStudent);
-	                    			if (index > -1) {
-	                    				teams[j].Students.splice(index, 1);
-	                    			}
-	                    			teams[k].Students.push(currStudent)
-	                    			teamName[currStudent.name] = teams[k].Name
-	                    		}
+	                    		added = true
+	                    		break
 	                    	}
-	                    	for(k = 0; k< teams.length; k++)
+	                    	//if the team is overflow, then we need to remove the student from the team
+	                    	else
 	                    	{
-	                    		if(teams[k].Name == currStudent.projectPref3 && teams[k].Students.length < teams[k].Size && added == false)
-	                    		{
-	                    			added = true
-	                    			index = teams[j].Students.indexOf(currStudent);
-	                    			if (index > -1) {
-	                    				teams[j].Students.splice(index, 1);
-	                    			}
-	                    			teams[k].Students.push(currStudent)
-	                    			teamName[currStudent.name] = teams[k].Name
-	                    		}
+	                    		for(k = 0; k< teams.length; k++)
+		                    	{
+	                    			//find the student's second preference and move the student to his second preference if that team isn't full.
+		                    		if(teams[k].Name == currStudent.projectPref2 && teams[k].Students.length < teams[k].Size && added == false)
+		                    		{
+		                    			added = true
+		                    			index = teams[j].Students.indexOf(currStudent);
+		                    			if (index > -1) {
+		                    				teams[j].Students.splice(index, 1);
+		                    			}
+		                    			teams[k].Students.push(currStudent)
+		                    		//	teamName[currStudent.name] = teams[k].Name
+		                    		}
+		                    	}
+	                			//find the student's third preference and move the student to his third preference if that team isn't full.
+		                    	for(k = 0; k< teams.length; k++)
+		                    	{
+		                    		if(teams[k].Name == currStudent.projectPref3 && teams[k].Students.length < teams[k].Size && added == false)
+		                    		{
+		                    			added = true
+		                    			index = teams[j].Students.indexOf(currStudent);
+		                    			if (index > -1) {
+		                    				teams[j].Students.splice(index, 1);
+		                    			}
+		                    			teams[k].Students.push(currStudent)
+		                    		//	teamName[currStudent.name] = teams[k].Name
+		                    		}
+		                    	}
 	                    	}
-                    	}
-                    }
-                    if(added == false && j == teams.length - 1)
-           			{
-           				index = teams[j].Students.indexOf(currStudent);
-            			if (index > -1) {
-            				teams[j].Students.splice(index, 1);
-            			}
-           				//noTeam.push(currStudent)
-           				 console.log(index + " " + teamName[currStudent.name] + " "+ currStudent.name)
-           			}
-                }
-       			
+	                    }
+	                }
+	       			//done with the student
+	       		}
+	       	 	//remove the student from the list
+	       	 	sortedStudent.splice(toPick,1)
+	       	 	
+	       	 	//add this student to the other list 
+	       	 	doneStudent.push(currStudent)
        		} 
-       	}
-       	while(sortedStudent.length != 0)
-       	{
-       		numStudent = sortedStudent.length
-       		toPick = Math.floor(Math.random() * (numStudent + 1));
-       	 	
-       	 	currStudent = sortedStudent[toPick]
-       		if(currStudent != undefined)
-       		{
-       			for (j = 0; j < teams.length; j++) 
-       			{
-                    if (teams[j].Name == teamName[currStudent.name]) 
-                    {
-                    	if(teams[j].Students.length > teams[j].Size )
+       		while(doneStudent.length != 0)
+        	{
+       			//get the number of the student we have
+        		numStudent = doneStudent.length
+        		//randomly pick one student
+        		toPick = Math.floor(Math.random() * (numStudent + 1));
+        	 	currStudent = doneStudent[toPick]
+        	 	
+        	 	//check the validity of the student's name
+        		if(currStudent != undefined)
+        		{
+        			for (j = 0; j < teams.length; j++) 
+        			{
+        				//get to the team where the student is assigned
+        				if (teams[j].Name == teamName[currStudent.name]) 
                     	{
-                    		index = teams[j].Students.indexOf(currStudent);
-            				if (index > -1)
-            				{
-            					teams[j].Students.splice(index, 1);
-            				}
-           					noTeam.push(currStudent)
-                    	}
-                    	
-                    }
-                }
-       			
-       		} 
-       	 	sortedStudent.splice(toPick,1)
-       	 	
+        					if(teams[j].Students.length > teams[j].Size )
+                     		{
+        						//remove the student if the team is still overflow
+                     			index = teams[j].Students.indexOf(currStudent);
+             					if (index > -1)
+             					{
+             						teams[j].Students.splice(index, 1);
+             					}
+             					//push the student to the "noTeam" team
+            					noTeam.push(currStudent)
+                     		}
+        				}
+                 	}
+        		} 
+        	 	//remove the student from the list
+        	 	doneStudent.splice(toPick,1)
+        	 	//add this student to the other list 
+	       	 	sortedStudent.push(currStudent)
+        	}
+       		
+       		//end this loop if the "noTeam" team has no student
+       		if(noTeam.length == 0)	break
        	}
+       	
                  
         var leftovers = {
             Name: "No Assigned Team",
