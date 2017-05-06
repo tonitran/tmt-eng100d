@@ -214,7 +214,7 @@
           var email = user.email;
           var uid = user.uid
         }
-      }
+      });
     }
 
     // write professor information into firebase 
@@ -222,7 +222,7 @@
       var profEmail = $("#email").val();
       var profPwd = $("#password").val();
       
-      database.auth().createUserWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
+      firebase.auth().createUserWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
         // handle errors
         var errorCode = error.code;
         var errorMsg = error.message;
@@ -234,7 +234,7 @@
       var profEmail = $("#email").val();
       var profPwd = $("#password").val();
       
-      database.auth().signInWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
+      firebase.auth().signInWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
         // handle errors
         var errorCode = error.code;
         var errorMsg = error.message;
@@ -250,7 +250,7 @@
         var projPref1 = $("#project-pref-1").find("option:selected").text();
         var projPref2 = $("#project-pref-2").find("option:selected").text();
         var projPref3 = $("#project-pref-3").find("option:selected").text();
-
+        
         database.ref("classes/" + className + "/students/" + studentPid).set({
             name: fullName,
             pid: studentPid,
