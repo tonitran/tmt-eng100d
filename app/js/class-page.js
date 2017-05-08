@@ -117,9 +117,9 @@ function initProjects() {
         });
 }
 
-function populateTeamsTable() {
-    var teams = createTeams();
-
+function populateTeamsTable(x) {
+	if(x == 1)   var teams = createTeamsByPref();
+	else if (x == 2) 
     console.log(teams);
 
     for (var i = 0; i < teams.length; i++) {
@@ -148,7 +148,7 @@ function populateTeamsTable() {
 
 }
 
-function createTeams() {
+function createTeamsByPref() {
     var teams = []
     var studentproj = []
         // add a Students parameter to each project which will hold which students are in the project
