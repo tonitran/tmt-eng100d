@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- Website Font style -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/login.css">
@@ -16,9 +20,14 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <title>Team Matching Tool Home</title>
+
 </head>
+
 <body>
+
+<!-- Top header of website that displays tool name, about, and contact labels -->
 <nav class="navbar navbar-inverse navbar-static-top">
+    
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -32,6 +41,8 @@
                 <a class="navbar-brand" href="index.html">Team Matching Tool</a>
             </div>
         </div>
+        
+        <!-- About and Contact label: need to implement functionality! -->
         <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right valign">
                 <li><a href="#">About</a></li>
@@ -40,14 +51,9 @@
         </div>
     </div>
 </nav>
-<!-- start div container after header -->
-<!--<div class="jumbotron">
-  <div class="container">
-    <h1 class="center-align">T.M.T</h1>
-    <p class="center-align">Welcome to Team Matching Tool!</p>
-  </div>
-</div>-->
-<br><br><br><!-- Remove later -->
+
+
+<br><br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -66,40 +72,53 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" action="src/my-classes.html" method="post" role="form"
-                                  style="display: block;">
+                           
+                            <!-- professor login form -->
+                            <form id="professor-form" action="src/my-classes.html" 
+                            method="post" role="form"
+                            style="display: block;">
+                                
+                                <!-- Email and Password labels on page -->
                                 <div class="form-group">
-                                    <input type="text" name="email" id="email" tabindex="1" class="form-control"
-                                           placeholder="Email" value="">
+                                    <input type="text" name="email" 
+                                    id="email" tabindex="1" 
+                                    class="form-control"
+                                    placeholder="Email" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2"
-                                           class="form-control" placeholder=" Password">
+                                    <input type="password" name="password" 
+                                    id="password" tabindex="2"
+                                    class="form-control" 
+                                    placeholder=" Password">
                                 </div>
-                                <!--<div class="form-group text-center">
-                                    <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                    <label for="remember"> Remember Me</label>
-                                </div>-->
+                                
+                                <!-- submit button: implement functionality on click -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="signup-submit" id="signup-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Sign Up"
-                                                   onClick="writeProfessorData()">
+                                            <input type="submit" name="signup-submit" 
+                                            id="signup-submit" tabindex="4"
+                                            class="form-control btn btn-login" 
+                                            value="Sign Up"
+                                            onClick="writeProfessorData()">
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <!-- login button: implement persistence (grab info from firebase) -->
                                 <div class="form-group">
                                     <div class="row">
-
                                         <div class="col-sm-6 col-sm-offset-3">
-
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Log In"
-                                                   onClick="readProfessorData()">
+                                            <input type="submit" name="login-submit" 
+                                            id="login-submit" tabindex="4"
+                                            class="form-control btn btn-login" 
+                                            value="Log In"
+                                            onClick="readProfessorData()">
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <!-- forget password option -->
                                 <!--<div class="form-group">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -109,24 +128,36 @@
                                         </div>
                                     </div>
                                 </div>-->
-                            </form>
-
-                            <form id="register-form" action="" method="post" role="form" style="display: none;">
+                            
+                            </form> <!-- end of professor form -->
+                            
+                            <!-- student login form -->
+                             <form id="student-form" action="" method="post" 
+                             role="form" style="display: none;">
+                                
                                 <div class="form-group">
                                     <label for="full-name">Full Name</label>
-                                    <input type="text" name="fullname" id="full-name" tabindex="1" class="form-control"
-                                           value="">
+                                    <input type="text" name="fullname" id="full-name" 
+                                    tabindex="1" class="form-control" value="">
                                 </div>
+                    
                                 <div class="form-group">
                                     <label for="pid">PID</label>
-                                    <input type="text" name="pid" id="pid" tabindex="2" class="form-control">
+                                    <input type="text" name="pid" id="pid" 
+                                    tabindex="2" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="student-class">Class</label>
-                                    <select class="form-control" id="student-class" onchange="loadPreferences()">
+                                    
+                                    <!-- Grab project preferences drop down menu -->
+                                    <select class="form-control" id="student-class" 
+                                    onchange="loadPreferences()">
                                         <option selected disabled>Select Class</option>
                                     </select>
+
                                 </div>
+                                
+                                <!-- Major drop down menu: need to not be hardcoded -->
                                 <div class="form-group">
                                     <label for="major">Major</label>
                                     <select class="form-control" id="major">
@@ -136,6 +167,8 @@
                                         <option>Science (Biology, Chemistry, Physics, ...)</option>
                                     </select>
                                 </div>
+                                
+                                <!-- Three project preferences labels -->
                                 <div class="form-group">
                                     <label for="project-pref-1">Project Preference 1</label>
                                     <select class="form-control" id="project-pref-1">
@@ -151,140 +184,40 @@
                                     <select class="form-control" id="project-pref-3">
                                     </select>
                                 </div>
+                                
+                                <!-- Submit button for student sign up -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit"
-                                                   tabindex="4" class="form-control btn btn-register" value="Submit"
-                                                   onclick="writeStudentData()">
+                                            <input type="submit" name="register-submit" 
+                                            id="register-submit" tabindex="4" 
+                                            class="form-control btn btn-register" value="Submit"
+                                            onclick="writeStudentData()">
                                         </div>
                                     </div>
                                 </div>
-
-                            </form>
+                             </form> <!-- end of student-form -->
+                        
                         </div>
-                    </div>
+                    </div> <!-- end of panel body div -->
+                
                 </div>
-            </div>
+            </div> <!-- end of panel login div -->
         </div>
-    </div>
-</div>
+    </div> <!-- end of row div -->
+</div> <!-- end of container div --> 
+
 <!-- jQuery -->
 <script src="jquery/jquery.min.js"></script>
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="js/login.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
-        authDomain: "team-matching-tool.firebaseapp.com",
-        databaseURL: "https://team-matching-tool.firebaseio.com",
-        storageBucket: "team-matching-tool.appspot.com",
-        messagingSenderId: "209177574012"
-    };
-    firebase.initializeApp(config);
-
-    var database = firebase.database();
-    
-    // code inside this function will only run once document is ready
-    $(document).ready(function () {
-
-        var ref = database.ref();
-        var dropDown = $("#student-class");
-
-        ref.once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(function (project) {
-                    var json = JSON.parse(JSON.stringify(project.val()));
-                    dropDown.append('<option>' + json.name + '</option>');
-                });
-            });
-
-        loadPreferences();
-    });
-    
-    function getInfo() {
-      database.auth().onAuthStateChanged(function(user) {
-        if(user) {
-          var email = user.email;
-          var uid = user.uid
-        }
-      });
-    }
-
-    // write professor information into firebase 
-    function writeProfessorData() {
-      var profEmail = $("#email").val();
-      var profPwd = $("#password").val();
-      
-      firebase.auth().createUserWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
-        // handle errors
-        var errorCode = error.code;
-        var errorMsg = error.message;
-      });
-    }
-    
-    // reads professor information -- for persistence
-    function readProfessorData() {
-      var profEmail = $("#email").val();
-      var profPwd = $("#password").val();
-      
-      firebase.auth().signInWithEmailAndPassword(profEmail, profPwd).catch(function(error) {
-        // handle errors
-        var errorCode = error.code;
-        var errorMsg = error.message;
-      });
-    
-    }
-
-    function writeStudentData() {
-        var fullName = $("#full-name").val();
-        var studentPid = $("#pid").val();
-        var className = $("#student-class").val();
-        var studentMajor = $("#major").val();
-        var projPref1 = $("#project-pref-1").find("option:selected").text();
-        var projPref2 = $("#project-pref-2").find("option:selected").text();
-        var projPref3 = $("#project-pref-3").find("option:selected").text();
-        
-        database.ref("classes/" + className + "/students/" + studentPid).set({
-            name: fullName,
-            pid: studentPid,
-            major: studentMajor,
-            projectPref1: projPref1,
-            projectPref2: projPref2,
-            projectPref3: projPref3
-        });
-    }
-
-    function loadPreferences() {
-        var pref1 = $("#project-pref-1");
-        var pref2 = $("#project-pref-2");
-        var pref3 = $("#project-pref-3");
-        pref1.empty();
-        pref2.empty();
-        pref3.empty();
-        var className = $("#student-class").find("option:selected").text();
-
-        console.log(className);
-        var ref = database.ref("classes/" + className + "/projects");
-
-        ref.once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(function (project) {
-                    var json = JSON.parse(JSON.stringify(project.val()));
-                    pref1.append('<option>' + json.name + '</option>');
-                    pref2.append('<option>' + json.name + '</option>');
-                    pref3.append('<option>' + json.name + '</option>');
-                });
-            });
-
-    }
-</script>
+<script src="js/login.js"></script>
+<script src="js/index.js"></script>
 
 </body>
+
 </html>
+
