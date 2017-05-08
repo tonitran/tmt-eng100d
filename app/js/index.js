@@ -12,7 +12,7 @@ var database = firebase.database();
 
 $(document).ready(function() {
 
-    var ref = database.ref("classes/");
+    var ref = database.ref();
     var dropDown = $("#student-class");
 
     ref.once('value')
@@ -26,24 +26,30 @@ $(document).ready(function() {
     loadPreferences();
 });
 
-function writeDataFirebase() {
-    var fullName = $("#full-name").val();
-    var studentPid = $("#pid").val();
-    var className = $("#student-class").val();
-    var studentMajor = $("#major").val();
-    var projPref1 = $("#project-pref-1").find("option:selected").text();
-    var projPref2 = $("#project-pref-2").find("option:selected").text();
-    var projPref3 = $("#project-pref-3").find("option:selected").text();
-
-    database.ref("classes/" + className + "/students/" + studentPid).set({
-        name: fullName,
-        pid: studentPid,
-        major: studentMajor,
-        projectPref1: projPref1,
-        projectPref2: projPref2,
-        projectPref3: projPref3
+// creates a user on firebase 
+$("#signup-submit").on("click", function () {
+        console.log("create user");
+        var email = $("#email").val();
+        var password = $("#password").val();
+        createUser(email, password);
+        
     });
-}
+var createUser = function (email, password) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log("error code: " + errorCode);
+        console.log("error message: " + errorMessage);
+    });
+    
+};
+
+/*function changeScreen() {
+
+    document.getElementById("professor-form").submit();
+}*/
+
 
 function loadPreferences() {
     var pref1 = $("#project-pref-1");

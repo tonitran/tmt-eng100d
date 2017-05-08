@@ -61,10 +61,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="active" id="login-form-link">Professor</a>
+                            <a href="#" class="active" id="professor-form-link">Professor</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Student</a>
+                            <a href="#" id="student-form-link">Student</a>
                         </div>
                     </div>
                     <hr>
@@ -96,11 +96,15 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="signup-submit" 
-                                            id="signup-submit" tabindex="4"
-                                            class="form-control btn btn-login" 
-                                            value="Sign Up"
-                                            onClick="writeProfessorData()">
+                                            <!-- button for creating user (literally just a trigger)-->
+                                            <input type="button" name="signup-submit" 
+                                            id="signup-submit" 
+                                            class="btn btn-login"
+                                            value="Sign Up">
+
+                                            <!-- hidden button for changing pages type="submit" -->
+                                            <!-- chrome doesn't work if the type="submit" so we need to find
+                                            a way to have an overlapping button or something -->
                                         </div>
                                     </div>
                                 </div>
@@ -109,11 +113,10 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="login-submit" 
+                                            <input type="button" name="login-submit" 
                                             id="login-submit" tabindex="4"
-                                            class="form-control btn btn-login" 
-                                            value="Log In"
-                                            onClick="readProfessorData()">
+                                            class="btn btn-login" 
+                                            value="Log In">
                                         </div>
                                     </div>
                                 </div>
