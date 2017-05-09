@@ -9,6 +9,9 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
+var className = decodeURIComponent(getUrlVars()["key"]);
+var studentsInClass = [];
+var projects = [];
 
 function getUrlVars() {
     var vars = [],
@@ -22,15 +25,10 @@ function getUrlVars() {
     return vars;
 }
 
-var className = decodeURIComponent(getUrlVars()["key"]);
-var students = [];
-var projects = [];
-
 $(document).ready(function() {
 
     var studentTable = $("#student-table");
     var projTeams = $("#proj-teams")
-
     var classLabel = $("#class-title");
     var createProj = $("#create-project");
 
@@ -84,30 +82,80 @@ $(document).ready(function() {
     initStudents();
     initProjects();
 
-    $('#deleteClass').click(function(){
+    $('#deleteClass').click(function() {
         var ref = database.ref("classes/" + className);
         ref.remove();
         window.history.back();
     });
+
+    $('#save-teams-btn').click(function() {
+        // Clear before overwrite
+        for (let projItr = 0; projItr < projects.length; projItr++) {
+            let projectRef = database.ref('classes/' + className + '/projects/' + projects[projItr].name + '/assignees/');
+            projectRef.remove();
+        }
+        let projectNames = $('#proj-teams > p');
+        let projectAssigneesTblList = $('#proj-teams > table');
+        let numProjects = projectNames.length;
+        for (let projectIndex = 0; projectIndex < numProjects; projectIndex++) {
+            let projectName = projectNames[projectIndex].innerHTML;
+            let projectRef = database.ref('classes/' + className + '/projects/' + projectName);
+            let studentRows = $(projectAssigneesTblList[projectIndex]).find('tbody').find('tr');
+            if (studentRows.length > 0) {
+                for (let studentIndex = 0; studentIndex < studentRows.length; studentIndex++) {
+                    let studentPID = $(studentRows[studentIndex]).find('td')[1].innerHTML;
+                    database.ref('classes/' + className + '/projects/' + projectName + '/assignees/' + studentPID).set(true);
+                }
+            }
+        }
+    });
+
+    $('#load-teams-btn').click(function() {
+        let unassignedStudents = studentsInClass.slice();
+        for (let projectIndex = 0; projectIndex < projects.length; projectIndex++) {
+            let projName = projects[projectIndex].name;
+            let assigneeIDs = Object.keys(projects[projectIndex].assignees);
+            let tableid = (projName).replace(/\s+/g, '');
+            let table = $('#' + tableid);
+            for (let assigneeIndex = 0; assigneeIndex < assigneeIDs.length; assigneeIndex++) {
+                let id = assigneeIDs[assigneeIndex];
+                let studentRef = database.ref('students/' + id);
+                studentRef.once('value').then(function(snapshot) {
+                    let student = snapshot.val();
+                    table.append(
+                        '<tr id = "' + student.pid + '" draggable = "true" ondragstart = "dragItem(event)" >' +
+                        '<td>' + student.name + '</td>' +
+                        '<td>' + student.pid + '</td>' +
+                        '<td>' + student.major + '</td>' +
+                        '<td>' + student.projectPref1 + '</td>' +
+                        '<td>' + student.projectPref2 + '</td>' +
+                        '<td>' + student.projectPref3 + '</td>' +
+                        '</tr>');
+                });
+            }
+        }
+        //TODO Show unassignedStudents after loading.
+    });
+
+    $('#export-teams-btn').click(function() {
+        //TODO
+    });
+
 });
 
 function initStudents() {
     var ref = database.ref("classes/" + className + "/students/");
-
     ref.once('value')
         .then(function(snapshot) {
             snapshot.forEach(function(project) {
                 var json = JSON.parse(JSON.stringify(project.val()));
-                students.push(json);
-
+                studentsInClass.push(json);
             });
         });
 }
 
 function initProjects() {
-
     var ref = database.ref("classes/" + className + "/projects/");
-
     ref.once('value')
         .then(function(snapshot) {
             snapshot.forEach(function(project) {
@@ -119,19 +167,13 @@ function initProjects() {
 
 function populateTeamsTable() {
     var teams = createTeams();
-
-    console.log(teams);
-
     for (var i = 0; i < teams.length; i++) {
         var projName = teams[i].Name;
         var tableid = (projName).replace(/\s+/g, '');
         var students = teams[i].Students;
-
         var table = $('#' + tableid);
-
         for (var j = 0; j < students.length; j++) {
             var student = students[j];
-
             if (student != null) {
                 table.append(
                     '<tr id = "' + student.pid + '" draggable = "true" ondragstart = "dragItem(event)" >' +
@@ -145,13 +187,12 @@ function populateTeamsTable() {
             }
         }
     }
-
 }
 
 function createTeams() {
     var teams = []
     var studentproj = []
-        // add a Students parameter to each project which will hold which students are in the project
+    // add a Students parameter to each project which will hold which students are in the project
     for (i = 0; i < projects.length; i++) {
         var toAdd = {
             Name: projects[i].name,
@@ -162,41 +203,41 @@ function createTeams() {
     }
 
     //"teams" is our output, where it holds all the projects and the students assigned to them
-    var j
-    var k
-    var toPick
-    var currStudent
-    var first
-    var second
-    var third
-    var numStudent
-    var currTeam
-    var noTeam = []
-    var tempStudent = []
-    var numStudents = students.length
-    var sortedStudent = []
-    var doneStudent = []
-    var teamName = []
-    var added
-    var index
-    var counter = 0
-        //PROGRAM STARTS HERE
-    while (students.length > 0) {
+    var j;
+    var k;
+    var toPick;
+    var currStudent;
+    var first;
+    var second;
+    var third;
+    var numStudent;
+    var currTeam;
+    var noTeam = [];
+    var tempStudent = [];
+    var numStudents = studentsInClass.length;
+    var sortedStudent = [];
+    var doneStudent = [];
+    var teamName = [];
+    var added;
+    var index;
+    var counter = 0;
+    //PROGRAM STARTS HERE
+    while (studentsInClass.length > 0) {
 
-        while (students.length != 0) {
-            currStudent = students[0]
+        while (studentsInClass.length != 0) {
+            currStudent = studentsInClass[0]
 
             for (j = 0; j < teams.length; j++) {
                 if (teams[j].Name == currStudent.projectPref1) {
                     teams[j].Students.push(currStudent)
                     teamName[currStudent.name] = teams[j].Name
-                        //		    	 console.log("adding " + currStudent.name + " " +  teams[j].Name)
+                    //		    	 console.log("adding " + currStudent.name + " " +  teams[j].Name)
 
                 }
             }
             //    console.log("adding " + currStudent.name + teams[j].Name)
-            students.splice(0, 1)
-            sortedStudent.push(students[0])
+            studentsInClass.splice(0, 1)
+            sortedStudent.push(studentsInClass[0])
 
         }
     }
@@ -215,10 +256,10 @@ function createTeams() {
             numStudent = sortedStudent.length
 
             added = false
-                //randomly pick one student
+            //randomly pick one student
             toPick = Math.floor(Math.random() * (numStudent + 1));
             currStudent = sortedStudent[toPick]
-                //check the validity of the student's name
+            //check the validity of the student's name
             if (currStudent != undefined) {
                 for (j = 0; j < teams.length; j++) {
                     //get to the team where the student is assigned
@@ -239,7 +280,7 @@ function createTeams() {
                                         teams[j].Students.splice(index, 1);
                                     }
                                     teams[k].Students.push(currStudent)
-                                        //	teamName[currStudent.name] = teams[k].Name
+                                    //	teamName[currStudent.name] = teams[k].Name
                                 }
                             }
                             //find the student's third preference and move the student to his third preference if that team isn't full.
@@ -251,7 +292,7 @@ function createTeams() {
                                         teams[j].Students.splice(index, 1);
                                     }
                                     teams[k].Students.push(currStudent)
-                                        //	teamName[currStudent.name] = teams[k].Name
+                                    //	teamName[currStudent.name] = teams[k].Name
                                 }
                             }
                         }
@@ -268,7 +309,7 @@ function createTeams() {
         while (doneStudent.length != 0) {
             //get the number of the student we have
             numStudent = doneStudent.length
-                //randomly pick one student
+            //randomly pick one student
             toPick = Math.floor(Math.random() * (numStudent + 1));
             currStudent = doneStudent[toPick]
 
@@ -291,7 +332,7 @@ function createTeams() {
             }
             //remove the student from the list
             doneStudent.splice(toPick, 1)
-                //add this student to the other list
+            //add this student to the other list
             sortedStudent.push(currStudent)
         }
 
