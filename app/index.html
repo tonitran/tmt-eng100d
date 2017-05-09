@@ -96,15 +96,11 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <!-- button for creating user (literally just a trigger)-->
+                                            <!-- button for creating user (literally just a trigger and functions are in index.js)-->
                                             <input type="button" name="signup-submit" 
-                                            id="signup-submit" 
+                                            id="signup-submit" tabindex="4"
                                             class="btn btn-login"
                                             value="Sign Up">
-
-                                            <!-- hidden button for changing pages type="submit" -->
-                                            <!-- chrome doesn't work if the type="submit" so we need to find
-                                            a way to have an overlapping button or something -->
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +109,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="button" name="login-submit" 
+                                            <input type="submit" name="login-submit" 
                                             id="login-submit" tabindex="4"
                                             class="btn btn-login" 
                                             value="Log In">
@@ -216,11 +212,17 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+
+<!-- files associated -->
 <script src="js/login.js"></script>
 <script src="js/index.js"></script>
 
 </body>
+
+
 
 </html>
 

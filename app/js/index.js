@@ -26,29 +26,30 @@ $(document).ready(function() {
     loadPreferences();
 });
 
-// creates a user on firebase 
+// creates a user on firebase when user clicks on the sign up button
 $("#signup-submit").on("click", function () {
-        console.log("create user");
         var email = $("#email").val();
         var password = $("#password").val();
         createUser(email, password);
         
-    });
+});
 var createUser = function (email, password) {
+
+    // adds user on firebase
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        console.log("create user");
+        
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log("error code: " + errorCode);
+        //console.log("error code: " + errorCode);
         console.log("error message: " + errorMessage);
-    });
     
+    });
+
+    // submits forms and changes to the class page
+    $("#professor-form").submit();
 };
-
-/*function changeScreen() {
-
-    document.getElementById("professor-form").submit();
-}*/
 
 
 function loadPreferences() {
