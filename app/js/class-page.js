@@ -165,8 +165,11 @@ function initProjects() {
         });
 }
 
-function populateTeamsTable() {
-    var teams = createTeams();
+function populateTeamsTable(x) {
+    if (x == 1) var teams = createTeamsByPref();
+    else if (x == 2) var teams = createTeamsByMajors();
+    console.log(teams);
+
     for (var i = 0; i < teams.length; i++) {
         var projName = teams[i].Name;
         var tableid = (projName).replace(/\s+/g, '');
@@ -189,18 +192,11 @@ function populateTeamsTable() {
     }
 }
 
-function createTeams() {
-    var teams = []
-    var studentproj = []
+function createTeamsByPref() {
+    var teams = [];
+    var doneTeams = [];
+    var studentproj = [];
     // add a Students parameter to each project which will hold which students are in the project
-    for (i = 0; i < projects.length; i++) {
-        var toAdd = {
-            Name: projects[i].name,
-            Size: projects[i].size,
-            Students: []
-        }
-        teams.push(toAdd)
-    }
 
     //"teams" is our output, where it holds all the projects and the students assigned to them
     var j;
@@ -213,34 +209,18 @@ function createTeams() {
     var numStudent;
     var currTeam;
     var noTeam = [];
-    var tempStudent = [];
-    var numStudents = studentsInClass.length;
+    var donenoteam = [];
+    var tempstudent = [];
+    var numstudents = studentsInClass.length;
     var sortedStudent = [];
     var doneStudent = [];
     var teamName = [];
     var added;
     var index;
     var counter = 0;
+    var minLeft = 9999;
     //PROGRAM STARTS HERE
-    while (studentsInClass.length > 0) {
 
-        while (studentsInClass.length != 0) {
-            currStudent = studentsInClass[0]
-
-            for (j = 0; j < teams.length; j++) {
-                if (teams[j].Name == currStudent.projectPref1) {
-                    teams[j].Students.push(currStudent)
-                    teamName[currStudent.name] = teams[j].Name
-                    //		    	 console.log("adding " + currStudent.name + " " +  teams[j].Name)
-
-                }
-            }
-            //    console.log("adding " + currStudent.name + teams[j].Name)
-            studentsInClass.splice(0, 1)
-            sortedStudent.push(studentsInClass[0])
-
-        }
-    }
     /*
     This rundom algorithm  will end if:
     1. No student in the "noTeam" team
@@ -248,104 +228,155 @@ function createTeams() {
     */
     while (true) {
         counter++
-        console.log(counter)
+        // console.log(counter)
         if (counter > 1000) break
         noTeam = []
+        teams = []
+
+        for (i = 0; i < projects.length; i++) {
+            var toAdd = {
+                Name: projects[i].name,
+                Size: projects[i].size,
+                Students: []
+            }
+            teams.push(toAdd)
+        }
+        while (studentsInClass.length != 0) {
+            currStudent = studentsInClass[0]
+            for (j = 0; j < teams.length; j++) {
+                if (teams[j].Name == currStudent.projectPref1) {
+                    teams[j].Students.push(currStudent)
+                    teamName[currStudent.name] = teams[j].Name
+                    // console.log("adding " + currStudent.name + " " +  teams[j].Name)
+                }
+            }
+            //    console.log("adding " + currStudent.name + teams[j].Name)
+            sortedStudent.push(studentsInClass[0])
+            studentsInClass.splice(0, 1)
+        }
+
+        // console.log("students number is : " + sortedStudent.length + " " + doneStudent.length + " " + students.length)
         while (sortedStudent.length != 0) {
             //get the number of the student we have
             numStudent = sortedStudent.length
 
             added = false
             //randomly pick one student
-            toPick = Math.floor(Math.random() * (numStudent + 1));
+            toPick = Math.floor(Math.random() * (numStudent));
             currStudent = sortedStudent[toPick]
             //check the validity of the student's name
-            if (currStudent != undefined) {
-                for (j = 0; j < teams.length; j++) {
-                    //get to the team where the student is assigned
-                    if (teams[j].Name == teamName[currStudent.name]) {
-                        //if the team is not full, then we don't need to remove the student from the team
-                        if (teams[j].Students.length <= teams[j].Size) {
-                            added = true
-                            break
-                        }
-                        //if the team is overflow, then we need to remove the student from the team
-                        else {
-                            for (k = 0; k < teams.length; k++) {
-                                //find the student's second preference and move the student to his second preference if that team isn't full.
-                                if (teams[k].Name == currStudent.projectPref2 && teams[k].Students.length < teams[k].Size && added == false) {
-                                    added = true
-                                    index = teams[j].Students.indexOf(currStudent);
-                                    if (index > -1) {
-                                        teams[j].Students.splice(index, 1);
-                                    }
-                                    teams[k].Students.push(currStudent)
-                                    //	teamName[currStudent.name] = teams[k].Name
+
+            for (j = 0; j < teams.length; j++) {
+                //get to the team where the student is assigned
+                if (teams[j].Name == teamName[currStudent.name]) {
+                    //if the team is not full, then we don't need to remove the student from the team
+                    if (teams[j].Students.length <= teams[j].Size) {
+                        added = true
+                        break
+                    }
+                    //if the team is overflow, then we need to remove the student from the team
+                    else {
+                        for (k = 0; k < teams.length; k++) {
+                            //find the student's second preference and move the student to his second preference if that team isn't full.
+                            if (teams[k].Name == currStudent.projectPref2 && teams[k].Students.length < teams[k].Size && added == false) {
+                                added = true
+                                index = teams[j].Students.indexOf(currStudent);
+                                if (index > -1) {
+                                    teams[j].Students.splice(index, 1);
                                 }
+                                teams[k].Students.push(currStudent)
+                                teamName[currStudent.name] = teams[k].Name
                             }
-                            //find the student's third preference and move the student to his third preference if that team isn't full.
-                            for (k = 0; k < teams.length; k++) {
-                                if (teams[k].Name == currStudent.projectPref3 && teams[k].Students.length < teams[k].Size && added == false) {
-                                    added = true
-                                    index = teams[j].Students.indexOf(currStudent);
-                                    if (index > -1) {
-                                        teams[j].Students.splice(index, 1);
-                                    }
-                                    teams[k].Students.push(currStudent)
-                                    //	teamName[currStudent.name] = teams[k].Name
+                        }
+                        //find the student's third preference and move the student to his third preference if that team isn't full.
+                        for (k = 0; k < teams.length; k++) {
+                            if (teams[k].Name == currStudent.projectPref3 && teams[k].Students.length < teams[k].Size && added == false) {
+                                added = true
+                                index = teams[j].Students.indexOf(currStudent);
+                                if (index > -1) {
+                                    teams[j].Students.splice(index, 1);
                                 }
+                                teams[k].Students.push(currStudent)
+                                teamName[currStudent.name] = teams[k].Name
                             }
                         }
                     }
                 }
                 //done with the student
             }
-            //remove the student from the list
-            sortedStudent.splice(toPick, 1)
 
             //add this student to the other list
             doneStudent.push(currStudent)
+            //remove the student from the list
+            sortedStudent.splice(toPick, 1)
         }
+
+        //console.log("students number2 is : " + sortedStudent.length + " " + doneStudent.length + students.length)
         while (doneStudent.length != 0) {
             //get the number of the student we have
             numStudent = doneStudent.length
             //randomly pick one student
-            toPick = Math.floor(Math.random() * (numStudent + 1));
+            toPick = Math.floor(Math.random() * (numStudent));
             currStudent = doneStudent[toPick]
-
-            //check the validity of the student's name
-            if (currStudent != undefined) {
-                for (j = 0; j < teams.length; j++) {
-                    //get to the team where the student is assigned
-                    if (teams[j].Name == teamName[currStudent.name]) {
-                        if (teams[j].Students.length > teams[j].Size) {
-                            //remove the student if the team is still overflow
-                            index = teams[j].Students.indexOf(currStudent);
-                            if (index > -1) {
-                                teams[j].Students.splice(index, 1);
-                            }
-                            //push the student to the "noTeam" team
-                            noTeam.push(currStudent)
+            //console.log("checking : " + currStudent.name)
+            for (j = 0; j < teams.length; j++) {
+                //get to the team where the student is assigned
+                if (teams[j].Name == teamName[currStudent.name]) {
+                    if (teams[j].Students.length > teams[j].Size) {
+                        //console.log("deleting : " + currStudent.name + " from " + teams[j].Name)
+                        //remove the student if the team is still overflow
+                        index = teams[j].Students.indexOf(currStudent);
+                        if (index > -1) {
+                            teams[j].Students.splice(index, 1);
                         }
+                        //push the student to the "noTeam" team
+                        noTeam.push(currStudent)
                     }
                 }
             }
             //remove the student from the list
             doneStudent.splice(toPick, 1)
             //add this student to the other list
-            sortedStudent.push(currStudent)
+            studentsInClass.push(currStudent)
         }
-
+        //console.log("students number3 is : " + sortedStudent.length + " " + doneStudent.length + students.length)
         //end this loop if the "noTeam" team has no student
-        if (noTeam.length == 0) break
+
+        if (noTeam.length == 0) {
+            doneTeams = []
+            doneNoTeam = []
+            //should be hard copy here
+            for (j = 0; j < teams.length; j++) {
+                doneTeams.push(teams[j])
+            }
+            break
+        }
+        if (noTeam.length < minLeft) {
+            doneTeams = []
+            doneNoTeam = []
+            minLeft = noTeam.length
+
+            //should be hard copy here
+            for (j = 0; j < teams.length; j++) {
+                //console.log(teams[j].Name +  ":")
+                var stu = teams[j].Students
+                for (k = 0; k < stu.length; k++) {
+                    //  console.log("	" + stu[k].name)
+                }
+                doneTeams.push(teams[j])
+            }
+            //console.log("No Team :")
+            for (j = 0; j < noTeam.length; j++) {
+                //console.log("	"+ noTeam[j].name)
+                doneNoTeam.push(noTeam[j])
+            }
+        }
     }
-
-
     var leftovers = {
         Name: "No Assigned Team",
-        Students: noTeam
+        Students: doneNoTeam
     }
-    teams.push(leftovers)
+    doneTeams.push(leftovers)
 
     /*
     for (j = 0; j < teams.length; j++) {
@@ -357,7 +388,11 @@ function createTeams() {
 
     }
     */
-    return teams
+    return doneTeams
+
+}
+
+function createTeamsByMajors() {;
 
 }
 
