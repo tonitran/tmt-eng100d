@@ -89,6 +89,7 @@ $(document).ready(function() {
     });
 
     $('#save-teams-btn').click(function() {
+        return; //FIXME Breaks the DB
         // Clear before overwrite
         for (let projItr = 0; projItr < projects.length; projItr++) {
             let projectRef = database.ref('classes/' + className + '/projects/' + projects[projItr].name + '/assignees/');
