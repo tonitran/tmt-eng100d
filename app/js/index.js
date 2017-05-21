@@ -10,6 +10,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+
 // adds user to firebase if signup botton is clicked
 function update() {
 
@@ -58,14 +59,7 @@ $(document).ready(function() {
     loadPreferences();
 });
 
-function about() {
-    alert('This tool was developed by a UCSD students in the class ENG 100D.');
-};
 
-
-function contact() {
-    alert('Email Gauri Iyer at gaiyer@ucsd.edu for any questions.');
-};
 
 function loadPreferences() {
     var pref1 = $("#project-pref-1");

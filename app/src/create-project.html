@@ -49,8 +49,10 @@
                                 <li class="classList"><a href="#">Create new team</a></li>
                             </ul>
                         </li>-->
-                <li class="valign"><a href="#">My Classes</a></li>
-                <li class="valign"><a href="#">Contact</a></li>
+                <li><a href="#" onclick="about()">About</a></li>
+                <li class="valign"><a href="my-classes.html">My Classes</a></li>
+                <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
+                <li><a href="../index.html" id = 'logout' onclick="logout()">Logout</a>></li>
             </ul>
         </div>
     </div>
@@ -89,7 +91,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="../js/login.js"></script>
-
+<script src="../js/header.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 <script>
     // Initialize Firebase

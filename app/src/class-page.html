@@ -34,8 +34,10 @@
             </div>
             <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right valign">
-                    <li class="valign"><a href="#">My Classes</a></li>
-                    <li class="valign"><a href="#">Contact</a></li>
+              	  	<li><a href="#" onclick="about()">About</a></li>
+                    <li class="valign"><a href="my-classes.html">My Classes</a></li>
+                    <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
+                    <li><a href="../index.html" id = 'logout' onclick="logout()">Logout</a>></li>
                 </ul>
             </div>
         </div>
@@ -124,6 +126,7 @@
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
     <script src="../js/login.js"></script>
     <script src="../js/class-page.js"></script>
+    <script src="../js/header.js"></script>
 </body>
 
 </html>
