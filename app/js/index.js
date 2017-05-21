@@ -10,9 +10,41 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// adds user to firebase if signup botton is clicked
+function update() {
+
+    var email = $("#email").val();
+    var password = $("#password").val();
+
+    // adds user to firebase and catches errors
+    // will not enter function if user is succesfully called
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        
+        // displays a pop up alert when an error occurs
+        if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+        } else if(errorCode == 'auth/email-already-in-use') {
+            alert('The email is already in use.');
+        } else if(errorCode == 'auth/invalid-email'){
+            alert('The email is invalid.');
+        } 
+    });
+}
+
+// if the user is logged in, change to the classes page.
+firebase.auth().onAuthStateChanged(firebaseUser => {
+  if (firebaseUser) {
+     document.location.href = "src/my-classes.html";
+  }
+});
+
 $(document).ready(function() {
 
-    var ref = database.ref("classes/");
+    var ref = database.ref();
     var dropDown = $("#student-class");
 
     ref.once('value')
@@ -26,24 +58,14 @@ $(document).ready(function() {
     loadPreferences();
 });
 
-function writeDataFirebase() {
-    var fullName = $("#full-name").val();
-    var studentPid = $("#pid").val();
-    var className = $("#student-class").val();
-    var studentMajor = $("#major").val();
-    var projPref1 = $("#project-pref-1").find("option:selected").text();
-    var projPref2 = $("#project-pref-2").find("option:selected").text();
-    var projPref3 = $("#project-pref-3").find("option:selected").text();
+function about() {
+    alert('This tool was developed by a UCSD students in the class ENG 100D.');
+};
 
-    database.ref("classes/" + className + "/students/" + studentPid).set({
-        name: fullName,
-        pid: studentPid,
-        major: studentMajor,
-        projectPref1: projPref1,
-        projectPref2: projPref2,
-        projectPref3: projPref3
-    });
-}
+
+function contact() {
+    alert('Email Gauri Iyer at gaiyer@ucsd.edu for any questions.');
+};
 
 function loadPreferences() {
     var pref1 = $("#project-pref-1");
@@ -54,7 +76,9 @@ function loadPreferences() {
     pref3.empty();
     var className = $("#student-class").find("option:selected").text();
 
+    //debug
     console.log(className);
+
     var ref = database.ref("classes/" + className + "/projects");
 
     ref.once('value')
