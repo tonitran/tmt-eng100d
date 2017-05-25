@@ -47,7 +47,7 @@
             <ul class="nav navbar-nav navbar-right valign">
                 <li><a href="#" onclick="about()">About</a></li>
                 <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
-                <li><a href="../index.html" id = 'logout' onclick="logout()">Logout</a>></li>
+                <li><a href="../index.html" id = 'logout' onclick="logout()">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -75,7 +75,7 @@
                         <div class="col-lg-12">
                            
                             <!-- professor login -->
-                                
+                            <div id="professor-form-link">
                             <!-- Email and Password labels on page -->
                             <div >
                                 <input type="text" name="email" 
@@ -97,7 +97,7 @@
                                         <!-- button for creating user: NEED A LOG OUT BUTTON FOR FULL FUNCTIONALITY -->
                                         <button type="button" name="signup-submit" 
                                         id="signup-submit" tabindex="4"
-                                        class="btn btn-login" onclick="update()">Sign Up</button>
+                                        class="btn btn-login" onclick="signup()">Sign Up</button>
                                     </div>
                                 </div>
                             </div>
@@ -106,14 +106,14 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-3">
-                                        <input type="submit" name="login-submit" 
+                                        <button type="submit" name="login-submit" 
                                         id="login-submit" tabindex="4"
-                                        class="btn btn-login" 
-                                        value="Log In">
+                                        class="btn btn-login" onclick="login()">Log In</button>
                                     </div>
                                 </div>
                             </div>
-                                
+                            
+                            </div>
                             <!-- forget password option -->
                             <!--<div class="form-group">
                                 <div class="row">
@@ -124,9 +124,9 @@
                                     </div>
                                 </div>
                             </div>-->
-                        
+                         
                        <!-- end of professor login -->
-                            
+                        <div id="student-form-link">
                             <!-- student login form -->
                              <form id="student-form" action="" method="post" 
                              role="form" style="display: none;">
@@ -193,8 +193,8 @@
                                     </div>
                                 </div>
                              </form> <!-- end of student-form -->
-                        
                         </div>
+                       </div>
                     </div> <!-- end of panel body div -->
                 
                 </div>
