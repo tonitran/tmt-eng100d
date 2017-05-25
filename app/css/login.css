@@ -72,7 +72,6 @@ h1, h2 {
 	padding: 14px 0;
 	text-transform: uppercase;
 	border-color: #59B2E6;
-	text-align:left;"
 }
 .btn-login:hover,
 .btn-login:focus {
@@ -80,8 +79,6 @@ h1, h2 {
 	background-color: #53A3CD;
 	border-color: #53A3CD;
 }
-
-
 .forgot-password {
 	text-decoration: underline;
 	color: #888;
@@ -103,7 +100,6 @@ h1, h2 {
 	text-transform: uppercase;
 	border-color: #1CB94A;
 }
-
 .btn-register:hover,
 .btn-register:focus {
 	color: #fff;
