@@ -43,6 +43,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   }
 });
 
+// logs user into their account
 function login() {
 
     var email = $("#email").val();
@@ -64,6 +65,30 @@ function login() {
         } 
     });
 }
+
+function register() {
+
+    var name = $("#full-name").val();
+    var pid = $("#pid").val();
+  /*  var student_class = $("student-class").val();
+    var major = $("major").val();
+    var pref1 = $("project-pref-1").val();
+    var pref2 = $("project-pref-2").val();
+    var pref3 = $("project-pref-3").val();*/
+
+    database.ref('students/' + name).set({
+        FullName: name,
+        PID: pid,
+        /*Class: student_class,
+        Major: major,
+        Preference1: pref1,
+        Preference2: pref2,
+        Preference3: pref3*/
+    });
+     window.location.reload();
+
+}
+
 $(document).ready(function() {
 
     var ref = database.ref();
