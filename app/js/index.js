@@ -70,20 +70,20 @@ function register() {
 
     var name = $("#full-name").val();
     var pid = $("#pid").val();
-  /*  var student_class = $("student-class").val();
-    var major = $("major").val();
-    var pref1 = $("project-pref-1").val();
-    var pref2 = $("project-pref-2").val();
-    var pref3 = $("project-pref-3").val();*/
+    var studClass = $("#student-class :selected").text(); 
+    var major = $("#major").val();
+    var pref1 = $("#project-pref-1").val();
+    var pref2 = $("#project-pref-2").val();
+    var pref3 = $("#project-pref-3").val();
 
     database.ref('students/' + name).set({
         FullName: name,
         PID: pid,
-        /*Class: student_class,
+        Class: studClass,
         Major: major,
         Preference1: pref1,
         Preference2: pref2,
-        Preference3: pref3*/
+        Preference3: pref3
     });
      window.location.reload();
 
@@ -91,7 +91,7 @@ function register() {
 
 $(document).ready(function() {
 
-    var ref = database.ref();
+    var ref = database.ref('classes');
     var dropDown = $("#student-class");
 
     ref.once('value')
@@ -104,8 +104,6 @@ $(document).ready(function() {
 
     loadPreferences();
 });
-
-
 
 function loadPreferences() {
     var pref1 = $("#project-pref-1");
