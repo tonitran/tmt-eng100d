@@ -139,7 +139,47 @@ $(document).ready(function() {
     });
 
     $('#export-teams-btn').click(function() {
-        //TODO
+        let data = [];
+        let allTeams = $("#proj-teams > table");
+        let counter = 0;
+        for (let i = 0; i < allTeams.length; i++) {
+            let projectName = allTeams[i].id;
+            let tHeadBody = allTeams[i].children;
+            for (let j = 0; j < tHeadBody.length; j++) {
+                if (tHeadBody[j].tagName == "TBODY") {
+                    let allTr = tHeadBody[j].children;
+                    for (let k = 0; k < allTr.length; k++) {
+                        data[counter] = [];
+                        let memName = allTr[k].children;
+                        data[counter].push(memName[1].innerHTML);
+                        data[counter].push(memName[0].innerHTML);
+                        data[counter].push(document.getElementById('class-title').innerHTML);
+                        data[counter].push(projectName);
+                        counter++;
+                    }
+                }
+            }
+
+        }
+        let csvStuff = "data:text/csv;charset=utf-8,";
+        let dataStuff = "PID,Student Name,Class,Project\n";
+        data.forEach(function(info) {
+            dataStuff += info.join(",");
+            dataStuff += "\n";
+        });
+        let finish = encodeURI(dataStuff);
+        let hider = document.createElement('a');
+        hider.href = csvStuff + finish;
+        hider.target = '_blank';
+        let name = prompt("Enter a name for your file", "");
+        if (name != "" && name != null) {
+            hider.download = name + '.csv';
+            hider.click();
+        }
+        if (name == "") {
+            window.alert("Not a valid name");
+        }
+
     });
 
 });
