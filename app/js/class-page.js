@@ -33,6 +33,7 @@ $(document).ready(function() {
     var createProj = $("#create-project");
 
     var ref = database.ref("classes/" + className + "/students/");
+    console.log(ref); 
 
     classLabel.text(className);
     createProj.attr('onclick', 'window.location.href="create-project.html?key=' + className + '"');
@@ -41,17 +42,22 @@ $(document).ready(function() {
         .then(function(snapshot) {
             snapshot.forEach(function(project) {
                 var json = JSON.parse(JSON.stringify(project.val()));
-                studentTable.append(
+		
+		studentTable.append(
                     '<tr>' +
                     '<td>' + json.name + '</td>' +
                     '<td>' + json.pid + '</td>' +
                     '<td>' + json.major + '</td>' +
                     '<td>' + json.projectPref1 + '</td>' +
                     '<td>' + json.projectPref2 + '</td>' +
-                    '<td>' + json.projectPref3 + '</td>' +
-                    '</tr>');
-            });
-        });
+                    '<td>' + json.projectPref3 + '</td>' + 
+		    '<td>' + '<input type = "button" value = "DELETE" id = "deleteStudent" onclick = "deleteStudent(\'' + json.pid + '\')">' + '</td>' + 
+		'</tr>');
+
+	    
+	    });
+	});
+
 
     ref = database.ref("classes/" + className + "/projects/");
     ref.once('value')
@@ -82,6 +88,13 @@ $(document).ready(function() {
     initStudents();
     initProjects();
 
+    $('#deleteClass').click(function(){
+        var ref = database.ref("classes/" + className);
+        ref.remove();
+        window.history.back();
+    });  
+
+   
     $('#deleteClass').click(function() {
         var ref = database.ref("classes/" + className);
         ref.remove();
@@ -181,8 +194,16 @@ $(document).ready(function() {
         }
 
     });
-
 });
+
+
+function deleteStudent(pid) {
+    alert("Deleting Student with PID: " + pid + "!");
+    var ref = database.ref("classes/" + className + "/students/" + pid); 
+    ref.remove();
+    location.reload(); 
+
+} 
 
 function initStudents() {
     var ref = database.ref("classes/" + className + "/students/");
