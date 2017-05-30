@@ -1,20 +1,20 @@
 firebase.auth().onAuthStateChanged(function(user) {
-	  if (user) {
-		 document.getElementById("logout").style.visibility="visible";
-	  } else {
-		  document.getElementById("logout").style.visibility="hidden";
-	  }
-	});
+    if (user) {
+        document.getElementById("logout").style.visibility = "visible";
+    } else {
+        document.getElementById("logout").style.visibility = "hidden";
+    }
+});
 
 // logs user out
 function logout() {
-	firebase.auth().signOut().then(function() {
-		//document.getElementById("logout").style.visibility="hidden";
+    firebase.auth().signOut().then(function() {
+        //document.getElementById("logout").style.visibility="hidden";
 
-		  // Sign-out successful.
-		}, function(error) {
-		  // An error happened.
-		});
+        // Sign-out successful.
+    }, function(error) {
+        // An error happened.
+    });
 }
 
 

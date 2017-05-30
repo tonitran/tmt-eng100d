@@ -19,28 +19,28 @@ function signup() {
 
     // adds user to firebase and catches errors
     // will not enter function if user is succesfully called
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        
+
         // displays a pop up alert when an error occurs
         if (errorCode == 'auth/weak-password') {
             alert('The password is too weak.');
-        } else if(errorCode == 'auth/email-already-in-use') {
+        } else if (errorCode == 'auth/email-already-in-use') {
             alert('The email is already in use.');
-        } else if(errorCode == 'auth/invalid-email'){
+        } else if (errorCode == 'auth/invalid-email') {
             alert('The email is invalid.');
-        } 
+        }
     });
 }
 
 // if the user is logged in, change to the classes page.
 firebase.auth().onAuthStateChanged(firebaseUser => {
-  if (firebaseUser) {
-     document.location.href = "src/my-classes.html";
-  }
+    if (firebaseUser) {
+        document.location.href = "src/my-classes.html";
+    }
 });
 
 // logs user into their account
@@ -48,21 +48,21 @@ function login() {
 
     var email = $("#email").val();
     var password = $("#password").val();
-    
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
 
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        
+
         // displays a pop up alert when an error occurs
         if (errorCode == 'auth/weak-password') {
             alert('The password is too weak.');
-        } else if(errorCode == 'auth/email-already-in-use') {
+        } else if (errorCode == 'auth/email-already-in-use') {
             alert('The email is already in use.');
-        } else if(errorCode == 'auth/invalid-email'){
+        } else if (errorCode == 'auth/invalid-email') {
             alert('The email is invalid.');
-        } 
+        }
     });
 }
 
@@ -70,7 +70,7 @@ function register() {
 
     var name = $("#full-name").val();
     var pid = $("#pid").val();
-    var studClass = $("#student-class :selected").text(); 
+    var studClass = $("#student-class :selected").text();
     var major = $("#major").val();
     var pref1 = $("#project-pref-1").val();
     var pref2 = $("#project-pref-2").val();
@@ -85,7 +85,7 @@ function register() {
         Preference2: pref2,
         Preference3: pref3
     });
-     window.location.reload();
+    window.location.reload();
 
 }
 
