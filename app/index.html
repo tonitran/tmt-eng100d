@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Website Font style -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    
+
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/login.css">
@@ -16,7 +16,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <title>Team Matching Tool Home</title>
@@ -25,141 +25,130 @@
 
 <body>
 
-<!-- Top header of website that displays tool name, about, and contact labels -->
-<nav class="navbar navbar-inverse navbar-static-top">
-    
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <!-- Top header of website that displays tool name, about, and contact labels -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="tName">
-                <a class="navbar-brand" href="index.html">Team Matching Tool</a>
+                <div class="tName">
+                    <a class="navbar-brand" href="index.html">Team Matching Tool</a>
+                </div>
+            </div>
+
+            <!-- About and Contact label: need to implement functionality! -->
+            <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right valign">
+                    <li><a href="#" onclick="about()">About</a></li>
+                    <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
+                    <li><a href="../index.html" id='logout' onclick="logout()">Logout</a></li>
+                </ul>
             </div>
         </div>
-        
-        <!-- About and Contact label: need to implement functionality! -->
-        <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right valign">
-                <li><a href="#" onclick="about()">About</a></li>
-                <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
-                <li><a href="../index.html" id = 'logout' onclick="logout()">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    </nav>
 
 
-<br><br><br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-login">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="container">
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="container">
 
-                            <ul class="nav nav-tabs nav-justified">
-                              <li class="active"><a href="#professor-form" data-toggle="tab">Professor</a></li>
-                              <li><a href="#student-form" data-toggle="tab">Student</a></li>
-                            </ul>
-  
-                            <div class="tab-content">
+                                <ul class="nav nav-tabs nav-justified">
+                                    <li class="active"><a href="#professor-form" data-toggle="tab">Professor</a></li>
+                                    <li><a href="#student-form" data-toggle="tab">Student</a></li>
+                                </ul>
 
-                                <div id="professor-form" class="tab-pane fade in active">
-                                  <!-- Email and Password labels on page -->
-                                    <div >
-                                        <label for="email">Email</label>
-                                        <input type="text" name="email" 
-                                        id="email" tabindex="1" 
-                                        
-                                        placeholder="johndoe@gmail.com" value="">
-                                    </div>
-                                    <div>
-                                        <label for="pwd">Passowrd</label>
-                                        <input type="password" name="password" 
-                                        id="password" tabindex="2"
-                                        
-                                        placeholder="@#1345">
-                                    </div>
-                                    
-                                    <!-- sign up button-->
-                                    <div >
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <!-- button for creating user: NEED A LOG OUT BUTTON FOR FULL FUNCTIONALITY -->
-                                                <button type="button" name="signup-submit" 
-                                                id="signup-submit" tabindex="4"
-                                                class="btn btn-login" onclick="signup()">Sign Up</button>
+                                <div class="tab-content">
+
+                                    <div id="professor-form" class="tab-pane fade in active">
+                                        <!-- Email and Password labels on page -->
+                                        <div>
+                                            <label for="email">Email</label>
+                                            <input type="text" name="email" id="email" tabindex="1" placeholder="johndoe@gmail.com" value="">
+                                        </div>
+                                        <div>
+                                            <label for="pwd">Passowrd</label>
+                                            <input type="password" name="password" id="password" tabindex="2" placeholder="@#1345">
+                                        </div>
+
+                                        <!-- sign up button-->
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <!-- button for creating user: NEED A LOG OUT BUTTON FOR FULL FUNCTIONALITY -->
+                                                    <button type="button" name="signup-submit" id="signup-submit" tabindex="4" class="btn btn-login" onclick="signup()">Sign Up</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- login button: implement persistence (grab info from firebase) -->
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <button type="submit" name="login-submit" id="login-submit" tabindex="4" class="btn btn-login" onclick="login()">Log In</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- login button: implement persistence (grab info from firebase) -->
-                                    <div >
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <button type="submit" name="login-submit" 
-                                                id="login-submit" tabindex="4"
-                                                class="btn btn-login" onclick="login()">Log In</button>
-                                            </div>
+                                    <!-- end of professor form -->
+
+                                    <div id="student-form" class="tab-pane fade">
+                                        <!--<form id="student-form" action="" method="post" role="form" style="display: none;">-->
+                                        <div>
+                                            <label for="full-name">Full Name</label>
+                                            <input type="text" name="fullname" id="full-name" tabindex="1" class="form-control" value="">
                                         </div>
-                                    </div>
-                                </div> <!-- end of professor form -->
-                                
-                                <div id="student-form" class="tab-pane fade">
-                                    <!--<form id="student-form" action="" method="post" role="form" style="display: none;">-->
-                                    <div >
-                                        <label for="full-name">Full Name</label>
-                                        <input type="text" name="fullname" id="full-name" tabindex="1" class="form-control" value="">
-                                    </div>
-                                    <div >
-                                        <label for="pid">PID</label>
-                                        <input type="text" name="pid" id="pid" tabindex="2" class="form-control">
-                                    </div>
-                                   
-                                    <div>
-                                        <label for="student-class">Class</label>
-                                        <select class="form-control" id="student-class" onchange="loadPreferences()">
+                                        <div>
+                                            <label for="pid">PID</label>
+                                            <input type="text" name="pid" id="pid" tabindex="2" class="form-control">
+                                        </div>
+
+                                        <div>
+                                            <label for="student-class">Class</label>
+                                            <select class="form-control" id="student-class" onchange="loadPreferences()">
                                             <option selected disabled>Select Class</option>
                                         </select>
-                                    </div>
-                                    <div>
-                                        <label for="major">Major</label>
-                                        <select class="form-control" id="major">
+                                        </div>
+                                        <div>
+                                            <label for="major">Major</label>
+                                            <select class="form-control" id="major">
                                             <option >Computer Science</option>
                                             <option>Cognitive Science</option>
                                             <option >Engineering (Electrical, Mechanical, Environmental, ...)
                                             <optiong >Science (Biology, Chemistry, Physics, ...)</option>
                                         </select>
-                                    </div>
-                                    <div >
-                                        <label for="project-pref-1">Project Preference 1</label>
-                                        <select class="form-control" id="project-pref-1">
+                                        </div>
+                                        <div>
+                                            <label for="project-pref-1">Project Preference 1</label>
+                                            <select class="form-control" id="project-pref-1">
                                         </select>
-                                    </div>
-                                    <div >
-                                        <label for="project-pref-2">Project Preference 2</label>
-                                        <select class="form-control" id="project-pref-2">
+                                        </div>
+                                        <div>
+                                            <label for="project-pref-2">Project Preference 2</label>
+                                            <select class="form-control" id="project-pref-2">
                                         </select>
-                                    </div>
-                                    <div >
-                                        <label for="project-pref-3">Project Preference 3</label>
-                                        <select class="form-control" id="project-pref-3">
+                                        </div>
+                                        <div>
+                                            <label for="project-pref-3">Project Preference 3</label>
+                                            <select class="form-control" id="project-pref-3">
                                         </select>
-                                    </div>
+                                        </div>
 
-                                    <div >
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <button type="button" name="student-submit" 
-                                                id="student-submit" tabindex="4"
-                                                class="btn btn-register" onclick="register()">Submit</button>
-                                                
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <button type="button" name="student-submit" id="student-submit" tabindex="4" class="btn btn-register" onclick="register()">Submit</button>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -167,29 +156,31 @@
                             </div>
                         </div>
                     </div>
-                </div> <!-- end of panel-heading -->
-            </div> <!-- end of panel login div -->
+                    <!-- end of panel-heading -->
+                </div>
+                <!-- end of panel login div -->
+            </div>
         </div>
-    </div> <!-- end of row div -->
-</div> <!-- end of container div --> 
+        <!-- end of row div -->
+    </div>
+    <!-- end of container div -->
 
-<!-- jQuery -->
-<script src="jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="jquery/jquery.min.js"></script>
 
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 
-<!-- files associated -->
-<script src="js/login.js"></script>
-<script src="js/index.js"></script>
-<script src="js/header.js"></script>
+    <!-- files associated -->
+    <script src="js/login.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/header.js"></script>
 </body>
 
 
 
 </html>
-

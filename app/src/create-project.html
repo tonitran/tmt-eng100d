@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Website Font style -->
@@ -11,29 +12,29 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <title>Create New Project</title>
 </head>
+
 <body>
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="tName">
-                <a class="navbar-brand" href="index.html">Team Matching Tool</a>
+                <div class="tName">
+                    <a class="navbar-brand" href="index.html">Team Matching Tool</a>
+                </div>
             </div>
-        </div>
-        <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right valign">
-                <!--<li class="dropdown">
+            <div class="collapse navbar-collapse valign-wrapper" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right valign">
+                    <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Classes<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="classList"><a href="#">ENG 100D</a></li>
@@ -41,7 +42,7 @@
                                 <li class="classList"><a href="#">Create new class</a></li>
                             </ul>
                         </li>-->
-                <!--<li class="dropdown">
+                    <!--<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Teams<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="classList"><a href="#">ENG 100D</a></li>
@@ -49,91 +50,92 @@
                                 <li class="classList"><a href="#">Create new team</a></li>
                             </ul>
                         </li>-->
-                <li><a href="#" onclick="about()">About</a></li>
-                <li class="valign"><a href="my-classes.html">My Classes</a></li>
-                <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
-                <li><a href="../index.html" id = 'logout' onclick="logout()">Logout</a>></li>
-            </ul>
+                    <li><a href="#" onclick="about()">About</a></li>
+                    <li class="valign"><a href="my-classes.html">My Classes</a></li>
+                    <li class="valign" onclick="contact()"><a href="#">Contact</a></li>
+                    <li><a href="../index.html" id='logout' onclick="logout()">Logout</a>></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- start div container after header -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="center-align">Add a New Project Team</h1>
+            <p class="center-align">Specify project team conditions.</p>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+
+                <form id="student-form" action="class-page.html" method="post" role="form">
+                    <div class="form-group" style="width: 37.5%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+                        <label for="project-name">Project Name:</label>
+                        <input type="text" class="form-control" id="project-name">
+                    </div>
+                    <div class="form-group" style="width: 37.5%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+                        <label for="project-max-size">Project Team Max Size:</label>
+                        <input type="text" class="form-control" id="project-max-size">
+                    </div>
+                    <div class="form-group" style="width: 20%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+                        <input type="submit" onclick="writeDataFirebase()" name="create-project" id="create-project" tabindex="4" class="form-control btn btn-login" value="Create Project Team">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</nav>
-<!-- start div container after header -->
-<div class="jumbotron">
-    <div class="container">
-        <h1 class="center-align">Add a New Project Team</h1>
-        <p class="center-align">Specify project team conditions.</p>
-    </div>
-    <div class="container text-center">
-        <div class="row">
-
-            <form id="student-form" action="class-page.html" method="post" role="form">
-                <div class="form-group" style="width: 37.5%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
-                    <label for="project-name">Project Name:</label>
-                    <input type="text" class="form-control" id="project-name">
-                </div>
-                <div class="form-group" style="width: 37.5%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
-                    <label for="project-max-size">Project Team Max Size:</label>
-                    <input type="text" class="form-control" id="project-max-size">
-                </div>
-                <div class="form-group" style="width: 20%; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
-                    <input type="submit" onclick="writeDataFirebase()" name="create-project" id="create-project" tabindex="4"
-                           class="form-control btn btn-login" value="Create Project Team">
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="../js/materialize.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="../js/login.js"></script>
-<script src="../js/header.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-<script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
-        authDomain: "team-matching-tool.firebaseapp.com",
-        databaseURL: "https://team-matching-tool.firebaseio.com",
-        storageBucket: "team-matching-tool.appspot.com",
-        messagingSenderId: "209177574012"
-    };
-    firebase.initializeApp(config);
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/header.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBx6L4UNMG5hDz3VVSvtmoYCOCf5x4yGTg",
+            authDomain: "team-matching-tool.firebaseapp.com",
+            databaseURL: "https://team-matching-tool.firebaseio.com",
+            storageBucket: "team-matching-tool.appspot.com",
+            messagingSenderId: "209177574012"
+        };
+        firebase.initializeApp(config);
 
-    var database = firebase.database();
+        var database = firebase.database();
 
-    function getUrlVars() {
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for (var i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
+        function getUrlVars() {
+            var vars = [],
+                hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
         }
-        return vars;
-    }
 
-    var className = decodeURIComponent(getUrlVars()["key"]);
+        var className = decodeURIComponent(getUrlVars()["key"]);
 
-    $(document).ready(function () {
-        var submit = $("#student-form");
-        submit.attr('action', 'class-page.html?key=' + className);
-    });
-
-    function writeDataFirebase() {
-        var projectName = $("#project-name").val();
-        var maxSize = $("#project-max-size").val();
-
-        database.ref("classes/" + className + "/projects/" + projectName).set({
-            name: projectName,
-            size: maxSize
+        $(document).ready(function() {
+            var submit = $("#student-form");
+            submit.attr('action', 'class-page.html?key=' + className);
         });
-    }
-</script>
+
+        function writeDataFirebase() {
+            var projectName = $("#project-name").val();
+            var maxSize = $("#project-max-size").val();
+
+            database.ref("classes/" + className + "/projects/" + projectName).set({
+                name: projectName,
+                size: maxSize
+            });
+        }
+    </script>
 
 </body>
+
 </html>

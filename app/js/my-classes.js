@@ -10,13 +10,13 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-$(document).ready(function () {
+$(document).ready(function() {
     var ref = database.ref("classes/");
     var studentTable = $("#my-classes");
     var index = 0;
     ref.once('value')
-        .then(function (snapshot) {
-            snapshot.forEach(function (project) {
+        .then(function(snapshot) {
+            snapshot.forEach(function(project) {
                 var json = JSON.parse(JSON.stringify(project.val()));
                 //studentTable.append('<a href="class-page.html?key='+ json.name + '" class="class collection-item center-align z">' + json.name + '</a>');
                 var btnHTML = '' +
@@ -31,8 +31,8 @@ $(document).ready(function () {
                     '    </ul>' +
                     '</div>';
                 studentTable.append(btnHTML);
-                $('#deleteClass' + index).data('classPath','classes/' + json.name);
-                $('#deleteClass' + index).click(function(){
+                $('#deleteClass' + index).data('classPath', 'classes/' + json.name);
+                $('#deleteClass' + index).click(function() {
                     var toDelete = $(this).data('classPath');
                     console.log(toDelete);
                     var ref = database.ref(toDelete);
