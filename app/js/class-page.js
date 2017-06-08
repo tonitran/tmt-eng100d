@@ -236,9 +236,11 @@ function populateTeamsTable(x) {
         var tableid = (projName).replace(/\s+/g, '');
         var students = teams[i].Students;
         var table = $('#' + tableid);
-        for (var j = 0; j < studentsInClass.length; j++) {
-            var student = studentsInClass[j];
+        console.log(projName+"	\n")
+        for (var j = 0; j < students.length; j++) {
+            var student = students[j];
             if (student != null) {
+            	
                 table.append(
                     '<tr id = "' + student.pid + '" draggable = "true" ondragstart = "dragItem(event)" >' +
                     '<td>' + student.name + '</td>' +
