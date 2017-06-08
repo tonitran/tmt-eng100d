@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "master": "team-matching-tool"
+  }
+}
