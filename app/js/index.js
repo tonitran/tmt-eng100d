@@ -72,6 +72,7 @@ function register() {
     var pid = $("#pid").val();
     var studClass = $("#student-class :selected").text();
     var major = $("#major").val();
+    var className = $("#student-class").val();
     var pref1 = $("#project-pref-1").val();
     var pref2 = $("#project-pref-2").val();
     var pref3 = $("#project-pref-3").val();
@@ -84,6 +85,14 @@ function register() {
         Preference1: pref1,
         Preference2: pref2,
         Preference3: pref3
+    });
+    database.ref("classes/" + className + "/students/" + pid).set({
+        name: name,
+        pid: pid,
+        major: major,
+        projectPref1: pref1,
+        projectPref2: pref2,
+        projectPref3: pref3
     });
     window.location.reload();
 
